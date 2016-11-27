@@ -19,7 +19,13 @@
 #include <cstdlib>
 
 #include <SDL.h>
+#include <physfs.h>
 
+
+static void QuitPhysFS()
+{
+	PHYSFS_deinit();
+}
 
 int main(int argc, char** argv)
 {
@@ -30,6 +36,14 @@ int main(int argc, char** argv)
 	}
 	
 	atexit(SDL_Quit);
+	
+	if (0 == PHYSFS_init(argv[0]))
+	{
+		SDL_LogError(SDL_LOG_PRIORITY_CRITICAL, "Unable to initialize PhysicsFS: %s", PHYSFS_getLastError());
+		return EXIT_FAILURE;
+	}
+	
+	atexit(QuitPhysFS);
 	
 	return EXIT_SUCCESS;
 }
