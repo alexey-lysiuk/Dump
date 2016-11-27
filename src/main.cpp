@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <cstdio>
 #include <cstdlib>
 
 #include <SDL.h>
@@ -24,28 +25,62 @@
 
 static void QuitPhysFS()
 {
-	PHYSFS_deinit();
+	if (0 == PHYSFS_deinit())
+	{
+		SDL_LogError(SDL_LOG_PRIORITY_ERROR, "Unable to shutdown PhysicsFS: %s", PHYSFS_getLastError());
+	}
 }
 
-int main(int argc, char** argv)
+bool InitSDL()
 {
 	if (0 != SDL_Init(SDL_INIT_VIDEO))
 	{
 		fprintf(stderr, "ERROR! Unable to initialize SDL: %s\n", SDL_GetError());
-		return EXIT_FAILURE;
+		return false;
 	}
 	
 	atexit(SDL_Quit);
-
+	
 	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_WARN);
 	
-	if (0 == PHYSFS_init(argv[0]))
+	return true;
+}
+
+bool InitPhysicsFS(const char* args)
+{
+	if (0 == PHYSFS_init(args))
 	{
 		SDL_LogError(SDL_LOG_PRIORITY_CRITICAL, "Unable to initialize PhysicsFS: %s", PHYSFS_getLastError());
-		return EXIT_FAILURE;
+		return false;
+	}
+
+	atexit(QuitPhysFS);
+
+	return true;
+}
+
+int MountPackage(const char* path)
+{
+	if (0 == PHYSFS_mount(path, nullptr, 0))
+	{
+		SDL_LogError(SDL_LOG_PRIORITY_CRITICAL, "Unable to mount package '%s': %s", path, PHYSFS_getLastError());
+		return false;
 	}
 	
-	atexit(QuitPhysFS);
+	return true;
+}
+
+int main(int argc, char** argv)
+{
+	if (argc < 2)
+	{
+		printf("Usage: %s doom2rpg.ipa\n", argv[0]);
+		return EXIT_SUCCESS;
+	}
+
+	const bool success = InitSDL()
+		&& InitPhysicsFS(argv[0])
+		&& MountPackage(argv[1]);
 	
-	return EXIT_SUCCESS;
+	return success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
