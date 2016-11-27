@@ -18,7 +18,18 @@
 
 #include <cstdlib>
 
+#include <SDL.h>
+
+
 int main(int argc, char** argv)
 {
+	if (0 != SDL_Init(SDL_INIT_VIDEO))
+	{
+		fprintf(stderr, "ERROR! Unable to initialize SDL: %s\n", SDL_GetError());
+		return EXIT_FAILURE;
+	}
+	
+	atexit(SDL_Quit);
+	
 	return EXIT_SUCCESS;
 }
