@@ -36,6 +36,8 @@ int main(int argc, char** argv)
 	}
 	
 	atexit(SDL_Quit);
+
+	SDL_LogSetAllPriority(SDL_LOG_PRIORITY_WARN);
 	
 	if (0 == PHYSFS_init(argv[0]))
 	{
