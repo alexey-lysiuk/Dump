@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project(Doom.II.RPG)
+project(doom2rpg)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 find_package(SDL2 REQUIRED)
@@ -18,6 +18,6 @@ if (APPLE)
 	endif()
 endif()
 
-add_executable(Doom.II.RPG WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
-target_link_libraries(Doom.II.RPG ${SDL2_LIBRARY} ${PHYSFS_LIBRARY})
-set_property(TARGET Doom.II.RPG PROPERTY CXX_STANDARD 11)
+add_executable(doom2rpg WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
+target_link_libraries(doom2rpg ${SDL2_LIBRARY} ${PHYSFS_LIBRARY})
+set_property(TARGET doom2rpg PROPERTY CXX_STANDARD 11)
