@@ -284,7 +284,7 @@ _TODO: legend_
 |[stat](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/stats.cpp#L134)||||
 |[testfade](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/swrenderer/r_swcolormaps.cpp#L508)||||
 |[testcolor](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/swrenderer/r_swcolormaps.cpp#L538)||||
-|[(clearwallcycles](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/swrenderer/scene/r_scene.cpp#L449)||||
+|[clearwallcycles](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/swrenderer/scene/r_scene.cpp#L449)||||
 |[teamlist](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/teaminfo.cpp#L328)||||
 |[printspans](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/textures/texture.cpp#L987)||||
 |[bumpgamma](https://github.com/coelckers/gzdoom/blob/19d25b00a392220a530637775ebf5cba40c7ec6b/src/v_palette.cpp#L91)||||
