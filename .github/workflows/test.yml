@@ -19,8 +19,9 @@ jobs:
 
     - name: Set
       run: |
-        echo "::set-output name=project_name_lower::$(echo ${{ matrix.config.name }} | tr '[:upper:]' '[:lower:]')"
+        #echo "::set-output name=project_name_lower::$(echo ${{ matrix.config.name }} | tr '[:upper:]' '[:lower:]')"
+        echo ::set-output name=docker_tag::$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}
 
     - name: Get
       run: |
-        echo "Value is ${{ steps.vars.outputs.project_name_lower }}"
+        echo "Value is ${{ steps.vars.outputs.docker_tag }}"
