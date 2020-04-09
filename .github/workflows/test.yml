@@ -15,3 +15,13 @@ jobs:
       run: |
         youtube-dl -F https://www.youtube.com/watch?v=NvO5u5u3gn0
         youtube-dl -F https://www.youtube.com/watch?v=APLgqNx4sww
+
+    - name: download
+      run: |
+        youtube-dl -f 251 https://www.youtube.com/watch?v=NvO5u5u3gn0
+        youtube-dl -f 251 https://www.youtube.com/watch?v=APLgqNx4sww
+
+    - name: list directory
+      run: |
+        ls -lR
+
