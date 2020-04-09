@@ -7,12 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: libinstpatch
+    - name: install
       run: |
-        curl -JOL https://github.com/swami/libinstpatch/archive/v1.1.3.tar.gz
-        shasum -a 256 libinstpatch-1.1.3.tar.gz
+        sudo pip install --upgrade youtube_dl
 
-    - name: fluidsynth
+    - name: list formats
       run: |
-        curl -JOL https://github.com/FluidSynth/fluidsynth/archive/v2.1.1.tar.gz
-        shasum -a 256 fluidsynth-2.1.1.tar.gz
+        youtube-dl -F https://www.youtube.com/watch?v=NvO5u5u3gn0
+        youtube-dl -F https://www.youtube.com/watch?v=APLgqNx4sww
