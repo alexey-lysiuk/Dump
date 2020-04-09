@@ -20,7 +20,7 @@ jobs:
     - name: download
       run: |
         youtube-dl -f 251 https://www.youtube.com/watch?v=NvO5u5u3gn0
-        # youtube-dl -f 251 https://www.youtube.com/watch?v=APLgqNx4sww
+        youtube-dl -f 251 https://www.youtube.com/watch?v=APLgqNx4sww
 
     - name: convert
       run: |
@@ -29,3 +29,9 @@ jobs:
     - name: list directory
       run: |
         ls -lR
+
+    - name: upload
+      uses: actions/upload-artifact@v1
+      with:
+        path: .
+        name: artifact
