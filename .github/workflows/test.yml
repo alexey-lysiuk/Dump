@@ -7,31 +7,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: install
-      run: |
-        sudo pip install --upgrade youtube_dl
-        sudo apt install ffmpeg
+    # - name: install
+    #   run: |
+    #     sudo pip install --upgrade youtube_dl
+    #     sudo apt install ffmpeg
 
     # - name: list formats
     #   run: |
     #     youtube-dl -F https://www.youtube.com/watch?v=NvO5u5u3gn0
     #     youtube-dl -F https://www.youtube.com/watch?v=APLgqNx4sww
 
-    - name: download
-      run: |
-        youtube-dl -f 251 https://www.youtube.com/watch?v=NvO5u5u3gn0
-        youtube-dl -f 251 https://www.youtube.com/watch?v=APLgqNx4sww
+    # - name: download
+    #   run: |
+    #     youtube-dl -f 251 https://www.youtube.com/watch?v=NvO5u5u3gn0
+    #     youtube-dl -f 251 https://www.youtube.com/watch?v=APLgqNx4sww
 
-    - name: convert
-      run: |
-        for i in *.webm; do ffmpeg -i "$i" -acodec libmp3lame -q:a 0 "${i%}.mp3"; done
+    # - name: convert
+    #   run: |
+    #     for i in *.webm; do ffmpeg -i "$i" -acodec libmp3lame -q:a 0 "${i%}.mp3"; done
 
     - name: list directory
       run: |
         ls -lR
 
-    - name: upload
-      uses: actions/upload-artifact@v1
-      with:
-        path: .
-        name: artifact
+    # - name: upload
+    #   uses: actions/upload-artifact@v1
+    #   with:
+    #     path: .
+    #     name: artifact
