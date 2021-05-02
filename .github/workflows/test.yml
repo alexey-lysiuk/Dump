@@ -14,4 +14,4 @@ jobs:
     - name: test
       run: |
         cd sdl_test
-		cmake .
+        cmake .
