@@ -9,14 +9,15 @@ include_directories( "${SDL2_INCLUDE_DIRS}" )
 set(CMAKE_REQUIRED_INCLUDES "${CMAKE_REQUIRED_INCLUDES}" "${SDL2_INCLUDE_DIRS}")
 
 CHECK_CXX_SOURCE_COMPILES("#include <SDL_version.h>
-int main()
-{
-	#if !SDL_VERSION_ATLEAST(2, 0, 6)
-	#error \"Only SDL 2.0.6 or later is supported.\"
-	#endif
-	return 0;
-}" SDL2_MIN_VERSION )
+#if SDL_VERSION_ATLEAST(2, 0, 6)
+int main() {}
+#endif" SDL2_MIN_VERSION )
 
-if (NOT SDL2_MIN_VERSION)
-	message(SEND_ERROR "Only SDL 2.0.6 or later is supported.")
-endif()
+message("SDL2_MIN_VERSION = ${SDL2_MIN_VERSION}")
+
+CHECK_CXX_SOURCE_COMPILES("#include <SDL_version.h>
+#if SDL_VERSION_ATLEAST(2, 0, 15)
+int main() {}
+#endif" SDL2_MIN_VERSION )
+
+message("SDL2_MIN_VERSION = ${SDL2_MIN_VERSION}")
