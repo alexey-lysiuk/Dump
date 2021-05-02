@@ -15,5 +15,6 @@ jobs:
 
     - name: test
       run: |
+        sdl2-config --version
         cd sdl_test
         cmake .
