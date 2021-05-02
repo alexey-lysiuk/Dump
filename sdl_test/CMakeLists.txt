@@ -2,6 +2,8 @@ cmake_minimum_required( VERSION 3.1.0 )
 
 project(sdl_test)
 
+include( CheckCXXSourceCompiles )
+
 find_package( SDL2 REQUIRED CONFIG )
 include_directories( "${SDL2_INCLUDE_DIRS}" )
 set( ZDOOM_LIBS ${ZDOOM_LIBS} "${SDL2_LIBRARIES}" )
