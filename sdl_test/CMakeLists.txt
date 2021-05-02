@@ -6,7 +6,7 @@ include( CheckCXXSourceCompiles )
 
 find_package( SDL2 REQUIRED CONFIG )
 include_directories( "${SDL2_INCLUDE_DIRS}" )
-set( ZDOOM_LIBS ${ZDOOM_LIBS} "${SDL2_LIBRARIES}" )
+set(CMAKE_REQUIRED_INCLUDES "${CMAKE_REQUIRED_INCLUDES}" "${SDL2_INCLUDE_DIRS}")
 
 CHECK_CXX_SOURCE_COMPILES("#include <SDL_version.h>
 int main()
