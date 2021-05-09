@@ -7,14 +7,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v1
-
-    - name: dependencies
-      run: |
-        sudo apt install libsdl2-dev
-
     - name: test
       run: |
-        sdl2-config --version --prefix --cflags --libs
-        cd sdl_test
-        cmake .
+        wget https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.1.tar.gz
+        ls -l
+        shasum -a 256 *.tar.gz
