@@ -7,8 +7,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    # - name: test
+    #   run: |
+    #     wget https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.1.tar.gz
+    #     ls -l
+    #     shasum -a 256 *.tar.gz
+
     - name: test
       run: |
-        wget https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.1.tar.gz
-        ls -l
-        shasum -a 256 *.tar.gz
+        sudo apt update
+        sudo apt list --upgradable
