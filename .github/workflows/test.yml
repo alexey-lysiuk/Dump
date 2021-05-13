@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    # - name: test
-    #   run: |
-    #     wget https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.1.tar.gz
-    #     ls -l
-    #     shasum -a 256 *.tar.gz
+    - name: checksum
+      run: |
+        wget https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.7.tar.gz
+        ls -l
+        shasum -a 256 *.tar.gz
 
     - name: test
       run: |
