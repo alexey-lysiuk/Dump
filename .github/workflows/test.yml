@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: checksum
       run: |
-        wget https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.7.tar.gz
+        wget https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.3.tar.gz
         ls -l
         shasum -a 256 *.tar.gz
 
