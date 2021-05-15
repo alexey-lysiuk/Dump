@@ -13,7 +13,7 @@ jobs:
         wget https://www.mpg123.de/download/mpg123-1.27.0.tar.bz2
         wget https://www.mpg123.de/download/mpg123-1.27.2.tar.bz2
         ls -l
-        shasum -a 256 *.tar.gz
+        shasum -a 256 *.tar.*
 
     - name: test
       run: |
