@@ -10,6 +10,8 @@ jobs:
     - name: checksum
       run: |
         wget https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.3.tar.gz
+        wget https://www.mpg123.de/download/mpg123-1.27.0.tar.bz2
+        wget https://www.mpg123.de/download/mpg123-1.27.2.tar.bz2
         ls -l
         shasum -a 256 *.tar.gz
 
