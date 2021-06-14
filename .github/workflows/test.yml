@@ -12,8 +12,3 @@ jobs:
         wget -q https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.4.tar.gz
         ls -l
         shasum -a 256 *.tar.*
-
-    # - name: test
-    #   run: |
-    #     sudo apt update
-    #     sudo apt list --upgradable
