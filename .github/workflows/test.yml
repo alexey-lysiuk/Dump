@@ -18,7 +18,7 @@ jobs:
             https://downloads.sourceforge.net/project/ftgl/FTGL%20Source/2.1.3~rc5/ftgl-2.1.3-rc5.tar.gz \
             https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.tgz \
         )
-        for link in $links; do
+        for link in ${links[@]}; do
             wget -q $link
         done
         ls -l
