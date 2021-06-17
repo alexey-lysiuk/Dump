@@ -22,4 +22,4 @@ jobs:
             wget -q $link
         done
         ls -l
-        shasum -a 256 *.tar.*
+        shasum -a 256 *.tar.* *.tgz *.zip
