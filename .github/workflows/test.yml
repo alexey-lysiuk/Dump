@@ -7,17 +7,17 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: checksum
-      run: |
-        links=( \
-            https://download.savannah.gnu.org/releases/freetype/freetype-2.11.0.tar.xz \
-        )
-        for link in ${links[@]}; do
-            wget -q $link
-        done
-        ls -l
-        shasum -a 256 *
+#    - name: checksum
+#      run: |
+#        links=( \
+#            https://download.savannah.gnu.org/releases/freetype/freetype-2.11.0.tar.xz \
+#        )
+#        for link in ${links[@]}; do
+#            wget -q $link
+#        done
+#        ls -l
+#        shasum -a 256 *
 
     - name: cmake capabilities
       run: |
-        cmake -E capabilities
+        cmake -E capabilities | jq '.'
