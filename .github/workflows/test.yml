@@ -10,10 +10,14 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://www.rarlab.com/rar/unrarsrc-6.0.7.tar.gz \
+            https://download.savannah.gnu.org/releases/freetype/freetype-2.11.0.tar.xz \
         )
         for link in ${links[@]}; do
             wget -q $link
         done
         ls -l
         shasum -a 256 *
+
+    - name: cmake capabilities
+      run: |
+        cmake -E capabilities
