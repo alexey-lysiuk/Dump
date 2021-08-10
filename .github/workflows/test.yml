@@ -7,17 +7,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-#    - name: checksum
-#      run: |
-#        links=( \
-#            https://download.savannah.gnu.org/releases/freetype/freetype-2.11.0.tar.xz \
-#        )
-#        for link in ${links[@]}; do
-#            wget -q $link
-#        done
-#        ls -l
-#        shasum -a 256 *
-
-    - name: cmake capabilities
-      run: |
-        cmake -E capabilities | jq '.'
+   - name: checksum
+     run: |
+       links=( \
+           https://downloads.sourceforge.net/project/libjpeg-turbo/2.1.1/libjpeg-turbo-2.1.1.tar.gz \
+       )
+       for link in ${links[@]}; do
+           wget -q $link
+       done
+       ls -l
+       shasum -a 256 *
