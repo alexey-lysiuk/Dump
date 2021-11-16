@@ -10,7 +10,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.2.189.tar.gz \
+            https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.1.6.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
