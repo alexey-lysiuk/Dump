@@ -10,8 +10,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://sourceforge.net/projects/libjpeg-turbo/files/2.1.2/libjpeg-turbo-2.1.2.tar.gz \
-            https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.4.tar.gz \
+            https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.6.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
