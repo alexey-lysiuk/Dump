@@ -10,7 +10,8 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.0.6.tar.gz \
+            https://github.com/harfbuzz/harfbuzz/releases/download/3.2.0/harfbuzz-3.2.0.tar.xz \
+            https://download.savannah.gnu.org/releases/freetype/freetype-2.11.1.tar.xz \
         )
         for link in ${links[@]}; do
             wget -q $link
