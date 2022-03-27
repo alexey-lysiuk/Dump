@@ -10,7 +10,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.1.8.tar.gz \
+            https://github.com/libsndfile/libsndfile/releases/download/1.1.0/libsndfile-1.1.0.tar.xz \
         )
         for link in ${links[@]}; do
             wget -q $link
