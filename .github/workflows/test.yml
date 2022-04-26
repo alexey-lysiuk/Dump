@@ -11,7 +11,7 @@ jobs:
       run: |
         links=( \
             https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.7.tar.gz \
-            https://github.com/libsdl-org/SDL/releases/download/release-2.0.22/SDL2-2.0.22.tar.gz \
+            https://libsdl.org/release/SDL2-2.0.22.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
