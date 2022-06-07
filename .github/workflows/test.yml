@@ -4,22 +4,16 @@ on: [push]
 
 jobs:
   build:
-#     runs-on: ubuntu-20.04
-    runs-on: macos-11
+    runs-on: ubuntu-20.04
 
     steps:
-      - name: brew list
-        run: |
-          brew list
-          brew list --cask
-#     - name: checksum
-#       run: |
-#         links=( \
-#             https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.7.tar.gz \
-#             https://libsdl.org/release/SDL2-2.0.22.tar.gz \
-#         )
-#         for link in ${links[@]}; do
-#             wget -q $link
-#         done
-#         ls -l
-#         shasum -a 256 *
+    - name: checksum
+      run: |
+        links=( \
+            https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.9.tar.gz \
+        )
+        for link in ${links[@]}; do
+            wget -q $link
+        done
+        ls -l
+        shasum -a 256 *
