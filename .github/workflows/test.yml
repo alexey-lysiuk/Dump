@@ -10,7 +10,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/libsdl-org/SDL_image/archive/refs/tags/prerelease-2.5.2.tar.gz \
+            https://openal-soft.org/openal-releases/openal-soft-1.22.2.tar.bz2 \
         )
         for link in ${links[@]}; do
             wget -q $link
