@@ -10,8 +10,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.0/SDL2_mixer-2.6.0.tar.gz \
-            https://github.com/libsdl-org/SDL_image/releases/download/release-2.6.0/SDL2_image-2.6.0.tar.gz \
+            https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.8.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
