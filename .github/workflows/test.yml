@@ -4,16 +4,25 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    #runs-on: ubuntu-20.04
+    runs-on: macos-12
 
     steps:
-    - name: checksum
+#     - name: checksum
+#       run: |
+#         links=( \
+#             https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.8.tar.gz \
+#         )
+#         for link in ${links[@]}; do
+#             wget -q $link
+#         done
+#         ls -l
+#         shasum -a 256 *
+    - name: Build MoltenVK
       run: |
-        links=( \
-            https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.2.8.tar.gz \
-        )
-        for link in ${links[@]}; do
-            wget -q $link
-        done
-        ls -l
-        shasum -a 256 *
+        curl -JOL https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.1.10.tar.gz
+        tar -xf MoltenVK-1.1.10.tar.gz
+        cd MoltenVK-1.1.10
+        ./fetchDependencies --macos
+        make macos
+        ls -lR .
