@@ -5,13 +5,11 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-20.04
-#     runs-on: macos-12
-
     steps:
     - name: checksum
       run: |
         links=( \
-            https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.1/SDL2_mixer-2.6.1.tar.gz \
+            https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.10.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
@@ -19,6 +17,8 @@ jobs:
         ls -l
         shasum -a 256 *
 
+#     runs-on: macos-12
+#     steps:
 #     - name: Build MoltenVK
 #       run: |
 #         curl -JOL https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.1.10.tar.gz
