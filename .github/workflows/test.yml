@@ -6,16 +6,22 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - name: checksum
+    - name: stream test
       run: |
-        links=( \
-            https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.10.tar.gz \
-        )
-        for link in ${links[@]}; do
-            wget -q $link
-        done
-        ls -l
-        shasum -a 256 *
+        pip install yt-dlp
+        yt-dlp -F 'https://youtu.be/7rAzBl3iox4'
+        yt-dlp -F 'https://youtu.be/lfHzdFDEAD8'
+
+#    - name: checksum
+#      run: |
+#        links=( \
+#            https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.10.tar.gz \
+#        )
+#        for link in ${links[@]}; do
+#            wget -q $link
+#        done
+#        ls -l
+#        shasum -a 256 *
 
 #     runs-on: macos-12
 #     steps:
