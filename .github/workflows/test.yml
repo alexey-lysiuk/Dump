@@ -6,30 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - name: stream test
+    - name: checksum
       run: |
-        pip install yt-dlp
-        yt-dlp -F 'https://youtu.be/7rAzBl3iox4'
-        yt-dlp -F 'https://youtu.be/lfHzdFDEAD8'
-
-#    - name: checksum
-#      run: |
-#        links=( \
-#            https://github.com/coelckers/ZMusic/archive/refs/tags/1.1.10.tar.gz \
-#        )
-#        for link in ${links[@]}; do
-#            wget -q $link
-#        done
-#        ls -l
-#        shasum -a 256 *
-
-#     runs-on: macos-12
-#     steps:
-#     - name: Build MoltenVK
-#       run: |
-#         curl -JOL https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.1.10.tar.gz
-#         tar -xf MoltenVK-1.1.10.tar.gz
-#         cd MoltenVK-1.1.10
-#         ./fetchDependencies --macos
-#         make macos
-#         ls -lR .
+        links=( \
+            https://github.com/ZDoom/ZMusic/archive/refs/tags/1.1.11.tar.gz \
+        )
+        for link in ${links[@]}; do
+            wget -q $link
+        done
+        ls -l
+        shasum -a 256 *
