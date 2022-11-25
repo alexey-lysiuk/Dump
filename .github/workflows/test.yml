@@ -9,8 +9,15 @@ jobs:
     steps:
     - name: Strawberry
       run: |
-        dir env:
-        Get-Content c:\Strawberry\README.txt
+        $env:Path
+   
+    - name: Strawberry BASH
+      shell: bash
+      run: |
+        export
+        echo ---------------------
+        export PATH=`echo $PATH | tr ":" "\n" | grep -v "Strawberry" | tr "\n" ":"`
+        export
    
 #     - name: checksum
 #       run: |
