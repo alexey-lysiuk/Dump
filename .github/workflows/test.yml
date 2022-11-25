@@ -8,9 +8,9 @@ jobs:
     runs-on: windows-2022
     steps:
     - name: Strawberry
-      shell: bash
       run: |
-        ls -lR /c/Strawberry
+        dir env:
+        Get-Content c:\Strawberry\README.txt
    
 #     - name: checksum
 #       run: |
