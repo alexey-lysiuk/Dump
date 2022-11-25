@@ -6,13 +6,18 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - name: checksum
+    - name: WTF is Strawberry
+      shell: bash
       run: |
-        links=( \
-            https://github.com/ZDoom/ZMusic/archive/refs/tags/1.1.11.tar.gz \
-        )
-        for link in ${links[@]}; do
-            wget -q $link
-        done
-        ls -l
-        shasum -a 256 *
+        ls -lR /c/Strawberry
+   
+#     - name: checksum
+#       run: |
+#         links=( \
+#             https://github.com/ZDoom/ZMusic/archive/refs/tags/1.1.11.tar.gz \
+#         )
+#         for link in ${links[@]}; do
+#             wget -q $link
+#         done
+#         ls -l
+#         shasum -a 256 *
