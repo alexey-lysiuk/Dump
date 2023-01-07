@@ -9,10 +9,11 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.3.1.tar.gz \
+            https://github.com/ZDoom/gzdoom/releases/download/g4.10.0/gzdoom_4.10.0_amd64.deb \
         )
         for link in ${links[@]}; do
             wget -q $link
         done
         ls -l
         shasum -a 256 *
+        dpkg -c gzdoom_4.10.0_amd64.deb
