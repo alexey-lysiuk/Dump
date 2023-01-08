@@ -14,6 +14,8 @@ jobs:
         for link in ${links[@]}; do
             wget -q $link
         done
-        ls -l
-        shasum -a 256 *
-        dpkg -c gzdoom_4.10.0_amd64.deb
+        # ls -l
+        # shasum -a 256 *
+        # dpkg -c gzdoom_4.10.0_amd64.deb
+        sudo dpkg -i gzdoom_4.10.0_amd64.deb
+        which gzdoom
