@@ -17,5 +17,6 @@ jobs:
         # ls -l
         # shasum -a 256 *
         # dpkg -c gzdoom_4.10.0_amd64.deb
+        sudo apt install libsdl2-2.0-0 libvorbisenc2 libflac8 libopus0 libmpg123-0 libmp3lame0
         sudo dpkg -i gzdoom_4.10.0_amd64.deb
         which gzdoom
