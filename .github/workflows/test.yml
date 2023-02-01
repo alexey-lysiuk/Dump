@@ -9,9 +9,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.2.2.tar.gz \
-            https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.239.tar.gz \
-            https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.239.tar.gz \
+            https://sourceforge.net/projects/libjpeg-turbo/files/2.1.5/libjpeg-turbo-2.1.5.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
