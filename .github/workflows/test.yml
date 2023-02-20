@@ -9,9 +9,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/libsdl-org/SDL/releases/download/release-2.26.3/SDL2-2.26.3.tar.gz \
-            https://github.com/libsdl-org/SDL_image/releases/download/release-2.6.3/SDL2_image-2.6.3.tar.gz \
-            https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.tar.gz \
+            https://github.com/bunder/qpakman/archive/refs/tags/v0.67.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
