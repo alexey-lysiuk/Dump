@@ -25,8 +25,13 @@ jobs:
         sudo apt install meson ninja-build
         curl -JOL 'https://github.com/radareorg/radare2/releases/download/5.8.4/radare2-5.8.4.tar.xz'
         tar -xf radare2-5.8.4.tar.xz
+        export CC=clang
+        export CXX=clang++
+        export CFLAGS=-fuse-ld=lld
+        export CXXFLAGS=-fuse-ld=lld
+        export LD=lld
         mkdir r2build
-        meson setup --buildtype=release --default-library=static r2build radare2-5.8.4
+        meson setup --buildtype=release --default-library=static -Denable_tests=false r2build radare2-5.8.4
         meson compile -C=r2build --verbose
-        meson install -C=r2build --destdir=r2install
-        ls -lR
+        meson install -C=r2build --destdir=../r2install
+        ls -lR r2install
