@@ -21,7 +21,6 @@ jobs:
     steps:
     - name: radare2 meson
       run: |
-        sudo apt install meson ninja-build
         curl -JOL 'https://github.com/radareorg/radare2/releases/download/5.8.4/radare2-5.8.4.tar.xz'
         tar -xf radare2-5.8.4.tar.xz
         echo '\nxtensa_isa xtensa_default_isa;' >> radare2-5.8.4/libr/arch/p/xtensa/plugin.c
