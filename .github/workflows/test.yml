@@ -34,4 +34,4 @@ jobs:
       if: always()
       run: |
         nm r2build/libr/arch/libr_arch.a.p/p_xtensa_gnu_elf32-xtensa.c.o
-        nm libr/arch/libr_arch.a.p/p_xtensa_plugin.c.o
+        nm r2build/libr/arch/libr_arch.a.p/p_xtensa_plugin.c.o
