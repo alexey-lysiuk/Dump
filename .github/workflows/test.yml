@@ -27,8 +27,7 @@ jobs:
         tar -xf radare2-5.8.4.tar.xz
         export CC=clang
         export CXX=clang++
-        export CFLAGS=-fuse-ld=lld
-        export CXXFLAGS=-fuse-ld=lld
+        export LDFLAGS=-fuse-ld=lld
         export LD=lld
         mkdir r2build
         meson setup --buildtype=release --default-library=static -Denable_tests=false r2build radare2-5.8.4
