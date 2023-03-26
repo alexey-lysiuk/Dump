@@ -4,18 +4,28 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+#    runs-on: ubuntu-22.04
+#    steps:
+#     - name: checksum
+#       run: |
+#         links=( \
+#             https://github.com/radareorg/radare2/archive/refs/tags/5.8.2.tar.gz \
+#         )
+#         for link in ${links[@]}; do
+#             wget -q $link
+#         done
+#         ls -l
+#         shasum -a 256 *
+
+    runs-on: macos-12
     steps:
-    - name: checksum
+    - name: radare2 meson
       run: |
-        links=( \
-            https://github.com/radareorg/radare2/archive/refs/tags/5.8.2.tar.gz \
-            https://github.com/radareorg/radare2/releases/download/5.8.2/radare2-5.8.2.tar.xz \
-            https://github.com/radareorg/radare2/releases/download/5.8.2/radare2-5.8.2.tar.xz.old.xz \
-            https://github.com/radareorg/radare2/releases/download/5.8.2/radare2-x64-5.8.2.pkg \
-        )
-        for link in ${links[@]}; do
-            wget -q $link
-        done
-        ls -l
-        shasum -a 256 *
+        brew install meson ninja
+        curl -JOL 'https://github.com/radareorg/radare2/releases/download/5.8.4/radare2-5.8.4.tar.xz'
+        tar -xf radare2-5.8.4.tar.xz
+        mkdir r2build
+        meson setup --buildtype=release --default-library=static r2build radare2-5.8.4
+        meson compile -C=r2build --verbose
+        meson install --destdir=r2install
+        ls -lR
