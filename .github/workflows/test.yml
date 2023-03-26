@@ -31,5 +31,6 @@ jobs:
         meson install -C=r2build --destdir=../r2install
         ls -lR r2install
     - name : mn
+      if: always()
       run: |
         nm r2build/libr/arch/libr_arch.a.p/p_xtensa_gnu_elf32-xtensa.c.o
