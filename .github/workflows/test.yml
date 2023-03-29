@@ -29,9 +29,7 @@ jobs:
         # meson setup --buildtype=release --default-library=static -Dblob=true -Denable_tests=false r2build radare2-5.8.4
         # meson compile -C=r2build --verbose
         # meson install -C=r2build --destdir=../r2install
-        cd radare2-5.8.4
-        ./configure --prefix=../r2install
-        make -j3 install
+        ./radare2-5.8.4/sys/static.sh ./r2install
         
     - name: list
       run: |
