@@ -22,6 +22,7 @@ jobs:
     - name: hello-meson
       run: |
         brew install meson ninja
+        cd hello-meson
         mkdir build xcode
         cd build
         meson setup ..
