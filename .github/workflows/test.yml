@@ -19,24 +19,16 @@ jobs:
 
     runs-on: macos-12
     steps:
-    - name: radare2
+    - name: hello-meson
       run: |
-        # brew install meson ninja
-        curl -JOL 'https://github.com/radareorg/radare2/releases/download/5.8.4/radare2-5.8.4.tar.xz'
-        tar -xf radare2-5.8.4.tar.xz
-        # echo 'xtensa_isa xtensa_default_isa;' >> radare2-5.8.4/libr/arch/p/xtensa/plugin.c
-        # mkdir r2build
-        # meson setup --buildtype=release --default-library=static -Dblob=true -Denable_tests=false r2build radare2-5.8.4
-        # meson compile -C=r2build --verbose
-        # meson install -C=r2build --destdir=../r2install
-        ./radare2-5.8.4/sys/static.sh ./r2install
-        
-    - name: list
-      run: |
-        ls -lR r2install
-  
-    - name: mn
-      if: always()
-      run: |
-        nm r2build/libr/arch/libr_arch.a.p/p_xtensa_gnu_elf32-xtensa.c.o
-        nm r2build/libr/arch/libr_arch.a.p/p_xtensa_plugin.c.o
+        brew install meson ninja
+        mkdir build xcode
+        meson setup ..
+        meson compile --verbose
+        ./hello-meson
+        cd ../xcode
+        meson setup --backend=xcode ..
+        xcodebuild
+        ./debug/hello-meson
+        cd ..
+        ls -lR
