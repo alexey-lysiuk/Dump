@@ -4,34 +4,15 @@ on: [push]
 
 jobs:
   build:
-#    runs-on: ubuntu-22.04
-#    steps:
-#     - name: checksum
-#       run: |
-#         links=( \
-#             https://github.com/radareorg/radare2/archive/refs/tags/5.8.2.tar.gz \
-#         )
-#         for link in ${links[@]}; do
-#             wget -q $link
-#         done
-#         ls -l
-#         shasum -a 256 *
-
-    runs-on: macos-12
-    steps:
-    - uses: actions/checkout@v3
-    - name: hello-meson
+   runs-on: ubuntu-22.04
+   steps:
+    - name: checksum
       run: |
-        brew install meson ninja
-        cd hello-meson
-        mkdir build xcode
-        cd build
-        meson setup ..
-        meson compile --verbose
-        ./hello-meson
-        cd ../xcode
-        meson setup --backend=xcode ..
-        xcodebuild
-        ./debug/hello-meson
-        cd ..
-        ls -lR
+        links=( \
+            https://github.com/ZDoom/ZMusic/archive/refs/tags/1.1.12.tar.gz \
+        )
+        for link in ${links[@]}; do
+            wget -q $link
+        done
+        ls -l
+        shasum -a 256 *
