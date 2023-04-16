@@ -9,7 +9,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://www.slipseer.com/index.php?resources/the-spiritworld.208/download \
+            https://github.com/NERSC/timemory/archive/refs/tags/v3.2.3.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
