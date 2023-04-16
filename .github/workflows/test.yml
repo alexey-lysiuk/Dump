@@ -9,7 +9,8 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/NERSC/timemory/archive/refs/tags/v3.2.3.tar.gz \
+            https://github.com/dfeneyrou/palanteer/archive/refs/tags/v0.6.tar.gz \
+            https://github.com/dfeneyrou/palanteer/archive/91de90475571ce364b769693e6abd05c91e5163c.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
