@@ -9,8 +9,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/dfeneyrou/palanteer/archive/refs/tags/v0.6.tar.gz \
-            https://github.com/dfeneyrou/palanteer/archive/91de90475571ce364b769693e6abd05c91e5163c.tar.gz \
+            https://github.com/xiph/opus/releases/download/v1.4/opus-1.4.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
