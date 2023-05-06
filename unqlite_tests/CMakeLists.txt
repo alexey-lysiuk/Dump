@@ -16,8 +16,13 @@ set_target_properties(unqlite PROPERTIES
 	COMPILE_DEFINITIONS ${UNQLITE_COMPILE_DEFINITIONS}
 )
 
-add_executable(unqlite_huge unqlite_huge.c)
-set_target_properties(unqlite_huge PROPERTIES 
-	COMPILE_DEFINITIONS ${UNQLITE_COMPILE_DEFINITIONS}
-	LINK_LIBRARIES unqlite
-)
+function(add_unqlite_test test_name)
+	add_executable(${test_name} ${test_name}.c)
+	set_target_properties(${test_name} PROPERTIES 
+		COMPILE_DEFINITIONS ${UNQLITE_COMPILE_DEFINITIONS}
+		LINK_LIBRARIES unqlite
+	)
+endfunction()
+
+add_unqlite_test(unqlite_huge)
+add_unqlite_test(unqlite_tar)
