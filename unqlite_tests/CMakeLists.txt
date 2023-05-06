@@ -3,8 +3,6 @@ cmake_minimum_required( VERSION 3.1.0 )
 project(unqlite_tests)
 
 set(UNQLITE_COMPILE_DEFINITIONS
-	JX9_DISABLE_BUILTIN_FUNC
-	JX9_DISABLE_DISK_IO
 	UNQLITE_ENABLE_THREADS
 )
 
