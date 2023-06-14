@@ -9,7 +9,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://github.com/vancegroup/freealut/archive/refs/tags/freealut_1_1_0.tar.gz \
+            https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.3.3.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
