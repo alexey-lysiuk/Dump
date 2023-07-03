@@ -9,7 +9,7 @@ jobs:
     - name: checksum
       run: |
         links=( \
-            https://downloads.sourceforge.net/projects/libjpeg-turbo/3.0.0/libjpeg-turbo-3.0.0.tar.gz \
+            https://downloads.sourceforge.net/project/libjpeg-turbo/3.0.0/libjpeg-turbo-3.0.0.tar.gz \
         )
         for link in ${links[@]}; do
             wget -q $link
