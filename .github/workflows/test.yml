@@ -1,18 +1,35 @@
 name: Test
 
-on: [push, workflow_dispatch]
+on: [push]
 
 jobs:
   build:
-   runs-on: ubuntu-22.04
-   steps:
-    - name: checksum
+    runs-on: windows-2022
+    steps:
+    - name: Envorinment BASH
+      shell: bash
       run: |
-        links=( \
-            https://downloads.sourceforge.net/project/libjpeg-turbo/3.0.0/libjpeg-turbo-3.0.0.tar.gz \
-        )
-        for link in ${links[@]}; do
-            wget -q $link
-        done
-        ls -l
-        shasum -a 256 *
+        export
+
+    - name: Envorinment CMD
+      shell: cmd
+      run: |
+        set  
+
+    - name: Envorinment PS
+      shell: pwsh
+      run: |
+        dir env:
+
+#    runs-on: ubuntu-22.04
+#    steps:
+#     - name: checksum
+#       run: |
+#         links=( \
+#             https://downloads.sourceforge.net/project/libjpeg-turbo/3.0.0/libjpeg-turbo-3.0.0.tar.gz \
+#         )
+#         for link in ${links[@]}; do
+#             wget -q $link
+#         done
+#         ls -l
+#         shasum -a 256 *
