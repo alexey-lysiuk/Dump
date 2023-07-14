@@ -6,20 +6,12 @@ jobs:
   build:
     runs-on: windows-2022
     steps:
-    - name: Envorinment BASH
-      shell: bash
-      run: |
-        export
-
-    - name: Envorinment CMD
-      shell: cmd
-      run: |
-        set  
-
-    - name: Envorinment PS
+    - name: Visual Studio Test
       shell: pwsh
       run: |
-        dir env:
+        $vsroot = (Get-VisualStudioInstance).InstallationPath
+        $devenv = join-path $vsroot "Common7\IDE\devenv.com"
+        & $devenv /?
 
 #    runs-on: ubuntu-22.04
 #    steps:
