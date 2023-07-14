@@ -11,7 +11,9 @@ jobs:
       run: |
         $vsroot = (Get-VisualStudioInstance).InstallationPath
         $devenv = join-path $vsroot "Common7\IDE\devenv.com"
+        Get-Date
         & $devenv /?
+        Get-Date
 
 #    runs-on: ubuntu-22.04
 #    steps:
