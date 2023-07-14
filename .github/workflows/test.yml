@@ -10,7 +10,7 @@ jobs:
       shell: pwsh
       run: |
         $vsroot = (Get-VisualStudioInstance).InstallationPath
-        $devenv = join-path $vsroot 'Common7\IDE\devenv.com'
+        $devenv = join-path $vsroot 'Common7\IDE\devenv.exe'
         Get-Date
         Start-Process -Wait $devenv -ArgumentList '/?'
         Get-Date
