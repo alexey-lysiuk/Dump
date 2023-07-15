@@ -6,14 +6,10 @@ jobs:
   build:
     runs-on: windows-2022
     steps:
-    - name: Visual Studio Test
+    - name: MSBuild Test
       shell: pwsh
       run: |
-        $vsroot = (Get-VisualStudioInstance).InstallationPath
-        $devenv = join-path $vsroot 'Common7\IDE\devenv.exe'
-        Get-Date
-        Start-Process -Wait $devenv -ArgumentList '/?'
-        Get-Date
+        & msbuild.exe -version
 
 #    runs-on: ubuntu-22.04
 #    steps:
