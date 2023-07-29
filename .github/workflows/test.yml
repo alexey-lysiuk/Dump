@@ -14,7 +14,7 @@ jobs:
         
     - name: configure
       working-directory: graphviz-8.1.0
-      run: ./configure --prefix=../graphviz --disable-shared --disable-dependency-tracking
+      run: ./configure --disable-shared --disable-dependency-tracking
         
     - name: build
       working-directory: graphviz-8.1.0
@@ -22,11 +22,11 @@ jobs:
       
     - name: install
       working-directory: graphviz-8.1.0
-      run: make install
+      run: make DESTDIR=../graphviz install
       
     - name: install
       working-directory: graphviz-8.1.0
-      run: ls -lR ../graphviz
+      run: ls -lR graphviz
   
    # runs-on: ubuntu-22.04
    # steps:
