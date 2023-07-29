@@ -14,7 +14,7 @@ jobs:
         
     - name: configure
       working-directory: graphviz-8.1.0
-      run: ./configure --disable-shared --disable-dependency-tracking
+      run: ./configure --disable-dependency-tracking
         
     - name: build
       working-directory: graphviz-8.1.0
@@ -28,7 +28,7 @@ jobs:
       run: ls -lR graphviz
       
     - name: test
-      run: ./graphviz/dot -- help
+      run: ./graphviz/usr/local/bin/dot --help
       
   
    # runs-on: ubuntu-22.04
