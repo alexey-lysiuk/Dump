@@ -22,11 +22,14 @@ jobs:
       
     - name: install
       working-directory: graphviz-8.1.0
-      run: make DESTDIR=../graphviz install
+      run: make DESTDIR=$(pwd)/../graphviz install
       
-    - name: install
-      working-directory: graphviz-8.1.0
+    - name: list
       run: ls -lR graphviz
+      
+    - name: test
+      run: ./graphviz/dot -- help
+      
   
    # runs-on: ubuntu-22.04
    # steps:
