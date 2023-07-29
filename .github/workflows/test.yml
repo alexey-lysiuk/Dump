@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: graphviz 
       run: |
-        curl -JOL https://gitlab.com/graphviz/graphviz/-/archive/8.1.0/graphviz-8.1.0.tar.bz2
+        curl -JOL https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/8.1.0/graphviz-8.1.0.tar.gz
         tar -xf graphviz-8.1.0.tar.bz2
         cd graphviz-8.1.0
         ./configure --help
