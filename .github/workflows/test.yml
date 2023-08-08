@@ -6,16 +6,23 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: checksum
+      # - name: checksum
+      #   run: |
+      #     links=( \
+      #       https://github.com/kugelrund/dzip/archive/refs/tags/v3.1.tar.gz \
+      #     )
+      #     for link in ${links[@]}; do
+      #       wget -q $link
+      #     done
+      #     ls -l
+      #     shasum -a 256 *
+
+      - name: build quakespasm .pak file
         run: |
-          links=( \
-            https://github.com/kugelrund/dzip/archive/refs/tags/v3.1.tar.gz \
-          )
-          for link in ${links[@]}; do
-            wget -q $link
-          done
-          ls -l
-          shasum -a 256 *
+          git clone https://github.com/sezero/quakespasm.git
+          cd quakespasm/Misc/qs_pak
+          make
+          md5 quakespasm.pak
 
 # jobs:
 #   build:
