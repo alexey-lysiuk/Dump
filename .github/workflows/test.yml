@@ -19,10 +19,15 @@ jobs:
 
       - name: build quakespasm .pak file
         run: |
-          git clone https://github.com/sezero/quakespasm.git
+          git clone --depth=1 https://github.com/sezero/quakespasm.git
           cd quakespasm/Misc/qs_pak
           make
-          md5 quakespasm.pak
+
+      - name: upload quakespasm .pak file
+        uses: actions/upload-artifact@v3
+        with:
+          path: quakespasm/Misc/qs_pak
+          name: quakespasm-pak
 
 # jobs:
 #   build:
