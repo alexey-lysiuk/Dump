@@ -6,28 +6,28 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      # - name: checksum
-      #   run: |
-      #     links=( \
-      #       https://github.com/kugelrund/dzip/archive/refs/tags/v3.1.tar.gz \
-      #     )
-      #     for link in ${links[@]}; do
-      #       wget -q $link
-      #     done
-      #     ls -l
-      #     shasum -a 256 *
-
-      - name: build quakespasm .pak file
+      - name: checksum
         run: |
-          git clone --depth=1 https://github.com/sezero/quakespasm.git
-          cd quakespasm/Misc/qs_pak
-          make
+          links=( \
+            https://github.com/libsndfile/libsndfile/releases/download/1.2.2/libsndfile-1.2.2.tar.xz \
+          )
+          for link in ${links[@]}; do
+            wget -q $link
+          done
+          ls -l
+          shasum -a 256 *
 
-      - name: upload quakespasm .pak file
-        uses: actions/upload-artifact@v3
-        with:
-          path: quakespasm/Misc/qs_pak
-          name: quakespasm-pak
+      # - name: build quakespasm .pak file
+      #   run: |
+      #     git clone --depth=1 https://github.com/sezero/quakespasm.git
+      #     cd quakespasm/Misc/qs_pak
+      #     make
+
+      # - name: upload quakespasm .pak file
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     path: quakespasm/Misc/qs_pak
+      #     name: quakespasm-pak
 
 # jobs:
 #   build:
