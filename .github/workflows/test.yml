@@ -4,19 +4,26 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: checksum
-        run: |
-          links=( \
-            https://github.com/libsndfile/libsndfile/releases/download/1.2.2/libsndfile-1.2.2.tar.xz \
-          )
-          for link in ${links[@]}; do
-            wget -q $link
-          done
-          ls -l
-          shasum -a 256 *
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: checksum
+    #     run: |
+    #       links=( \
+    #         https://github.com/libsndfile/libsndfile/releases/download/1.2.2/libsndfile-1.2.2.tar.xz \
+    #       )
+    #       for link in ${links[@]}; do
+    #         wget -q $link
+    #       done
+    #       ls -l
+    #       shasum -a 256 *
 
+    runs-on: ubuntu-20.04
+    steps:
+      - name: std::set<> test
+        run: |
+          sudo apt update && sudo apt install clang-6.0
+          clang++-6.0 tests/stdset.cpp
+          
       # - name: build quakespasm .pak file
       #   run: |
       #     git clone --depth=1 https://github.com/sezero/quakespasm.git
@@ -29,8 +36,7 @@ jobs:
       #     path: quakespasm/Misc/qs_pak
       #     name: quakespasm-pak
 
-# jobs:
-#   build:
+
 #     runs-on: macos-12
 #     steps:
 #     - name: download
