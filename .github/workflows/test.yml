@@ -19,7 +19,7 @@ jobs:
 
     runs-on: macos-12
     steps:
-      - name: Vulkan-Loader 1.3.261 macOS cross-compilation
+      - name: Vulkan-Loader @4830af3 macOS cross-compilation
         run: |
           curl -JOL 'https://github.com/leetal/ios-cmake/raw/547143849a0965813c40e3a8db286edf1d7667f2/ios.toolchain.cmake'
           
@@ -31,9 +31,9 @@ jobs:
           make install
           cd ../..
           
-          curl -JOL 'https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.261.tar.gz'
-          tar -xf Vulkan-Loader-1.3.261.tar.gz
-          cd Vulkan-Loader-1.3.261
+          curl -JOL 'https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/heads/main.zip'
+          unzip Vulkan-Loader-main.zip
+          cd Vulkan-Loader-main
           cmake -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=MAC_ARM64 -DVulkanHeaders_DIR=../vkheaders-install/share/cmake/VulkanHeaders -B build -S .
           cd build
           make
