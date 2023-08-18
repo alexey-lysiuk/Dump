@@ -4,39 +4,40 @@ on: [push]
 
 jobs:
   build:
-    # runs-on: ubuntu-22.04
-    # steps:
-    #   - name: checksum
-    #     run: |
-    #       links=( \
-    #         https://github.com/libsndfile/libsndfile/releases/download/1.2.2/libsndfile-1.2.2.tar.xz \
-    #       )
-    #       for link in ${links[@]}; do
-    #         wget -q $link
-    #       done
-    #       ls -l
-    #       shasum -a 256 *
-
-    runs-on: macos-12
+    runs-on: ubuntu-22.04
     steps:
-      - name: Vulkan-Loader #1276 macOS cross-compilation
+      - name: checksum
         run: |
-          curl -JOL 'https://github.com/leetal/ios-cmake/raw/547143849a0965813c40e3a8db286edf1d7667f2/ios.toolchain.cmake'
+          links=( \
+            https://github.com/charles-lunarg/Vulkan-Loader/archive/refs/heads/support_apple_clang_compiler.zip \
+            https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.2.5.tar.gz \
+          )
+          for link in ${links[@]}; do
+            wget -q $link
+          done
+          ls -l
+          shasum -a 256 *
+
+    # runs-on: macos-12
+    # steps:
+    #   - name: Vulkan-Loader #1276 macOS cross-compilation
+    #     run: |
+    #       curl -JOL 'https://github.com/leetal/ios-cmake/raw/547143849a0965813c40e3a8db286edf1d7667f2/ios.toolchain.cmake'
           
-          curl -JOL 'https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.261.tar.gz'
-          tar -xf Vulkan-Headers-1.3.261.tar.gz
-          cd Vulkan-Headers-1.3.261
-          cmake -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=MAC_ARM64 -DCMAKE_INSTALL_PREFIX=../vkheaders-install -B build -S .
-          cd build
-          make install
-          cd ../..
+    #       curl -JOL 'https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.261.tar.gz'
+    #       tar -xf Vulkan-Headers-1.3.261.tar.gz
+    #       cd Vulkan-Headers-1.3.261
+    #       cmake -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=MAC_ARM64 -DCMAKE_INSTALL_PREFIX=../vkheaders-install -B build -S .
+    #       cd build
+    #       make install
+    #       cd ../..
           
-          curl -JOL 'https://github.com/charles-lunarg/Vulkan-Loader/archive/refs/heads/support_apple_clang_compiler.zip'
-          unzip Vulkan-Loader-support_apple_clang_compiler.zip
-          cd Vulkan-Loader-support_apple_clang_compiler
-          cmake -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=MAC_ARM64 -DVulkanHeaders_DIR=../vkheaders-install/share/cmake/VulkanHeaders -B build -S .
-          cd build
-          make
+    #       curl -JOL 'https://github.com/charles-lunarg/Vulkan-Loader/archive/refs/heads/support_apple_clang_compiler.zip'
+    #       unzip Vulkan-Loader-support_apple_clang_compiler.zip
+    #       cd Vulkan-Loader-support_apple_clang_compiler
+    #       cmake -DCMAKE_TOOLCHAIN_FILE=../ios.toolchain.cmake -DPLATFORM=MAC_ARM64 -DVulkanHeaders_DIR=../vkheaders-install/share/cmake/VulkanHeaders -B build -S .
+    #       cd build
+    #       make
 
       # - name: build quakespasm .pak file
       #   run: |
