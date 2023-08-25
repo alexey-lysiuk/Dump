@@ -1,6 +1,18 @@
 name: Test
 
-on: [push, workflow_dispatch]
+on: 
+  push:
+  workflow_dispatch:
+    inputs:
+      link1:
+        description: 'Link 1'
+        type: string
+      link2:
+        description: 'Link 2'
+        type: string
+      link3:
+        description: 'Link 3'
+        type: string
 
 jobs:
   build:
@@ -9,8 +21,9 @@ jobs:
       - name: checksum
         run: |
           links=( \
-            https://github.com/charles-lunarg/Vulkan-Loader/archive/refs/heads/support_apple_clang_compiler.zip \
-            https://github.com/KhronosGroup/MoltenVK/archive/refs/tags/v1.2.5.tar.gz \
+            ${{ inputs.link1 }} \
+            ${{ inputs.link2 }} \
+            ${{ inputs.link3 }} \
           )
           for link in ${links[@]}; do
             wget -q $link
