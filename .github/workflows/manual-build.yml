@@ -1,0 +1,65 @@
+---
+name: Manual Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Target to build'
+        required: true
+        type: string
+      skip-arch:
+        description: 'Skip architecture'
+        default: None
+        type: choice
+        options:
+          - None
+          - Intel
+          - ARM
+      min-os-ver-intel:
+        description: 'macOS deployment version for Intel'
+        type: string
+      min-os-ver-arm:
+        description: 'macOS deployment version for ARM'
+        type: string
+      hack-static-moltenvk:
+        description: 'Link with static MoltenVK library'
+        type: boolean
+      hack-quasi-glib:
+        description: 'Link with QuasiGlib library'
+        type: boolean
+
+jobs:
+  build:
+    name: ${{ inputs.target }}
+    runs-on: macos-12
+    steps:
+      # - uses: actions/checkout@v3
+      - name: Checkout
+        run: |
+          git clone -s https://github.com/ZDoom/zdoom-macos-deps.git
+
+      - name: Build target
+        run: |
+          # ./build.py --target ${{ inputs.target }}
+          ./zdoom-macos-deps/build.py --target ${{ inputs.target }}
+
+      - name: Upload Package
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ inputs.target }}
+          path: | 
+            # deps/${{ inputs.target }}
+            # output/${{ inputs.target }}
+            zdoom-macos-deps/deps/${{ inputs.target }}
+            zdoom-macos-deps/output/${{ inputs.target }}
+          if-no-files-found: ignore
+
+      - name: List Build Directory
+        if: always()
+        shell: bash
+        run: |
+          cd zdoom-macos-deps  # remove
+          git status
+          ls -lR .
+...
