@@ -45,8 +45,8 @@ jobs:
           echo "skip-arch = ${{ inputs.skip-arch }}"
           echo "min-os-ver-intel = ${{ inputs.min-os-ver-intel }}"
           echo "min-os-ver-arm = ${{ inputs.min-os-ver-arm }}"
-          echo "hack-static-moltenvk = ${{ hack-static-moltenvk }}"
-          echo "hack-quasi-glib = ${{ hack-quasi-glib }}"
+          echo "hack-static-moltenvk = ${{ inputs.hack-static-moltenvk }}"
+          echo "hack-quasi-glib = ${{ inputs.hack-quasi-glib }}"
 
       - name: Build target
         run: |
