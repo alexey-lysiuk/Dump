@@ -41,12 +41,12 @@ jobs:
 
       - name: Settings
         run: |
-          echo "target = {{ inputs.target }}"
-          echo "skip-arch = {{ inputs.skip-arch }}"
-          echo "min-os-ver-intel = {{ inputs.min-os-ver-intel }}"
-          echo "min-os-ver-arm = {{ inputs.min-os-ver-arm }}"
-          echo "hack-static-moltenvk = {{ hack-static-moltenvk }}"
-          echo "hack-quasi-glib = {{ hack-quasi-glib }}"
+          echo "target = ${{ inputs.target }}"
+          echo "skip-arch = ${{ inputs.skip-arch }}"
+          echo "min-os-ver-intel = ${{ inputs.min-os-ver-intel }}"
+          echo "min-os-ver-arm = ${{ inputs.min-os-ver-arm }}"
+          echo "hack-static-moltenvk = ${{ hack-static-moltenvk }}"
+          echo "hack-quasi-glib = ${{ hack-quasi-glib }}"
 
       - name: Build target
         run: |
