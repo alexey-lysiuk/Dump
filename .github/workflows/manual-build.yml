@@ -61,7 +61,7 @@ jobs:
           	BUILD_CMDLINE+=' --static-moltenvk'
           fi
           
-          if [ "inputs.hack-quasi-glib" == 'true' ]; then
+          if [ "${{ inputs.hack-quasi-glib }}" == 'true' ]; then
           	BUILD_CMDLINE+=' --quasi-glib'
           fi
           
