@@ -7,6 +7,7 @@ on:
       link1:
         description: 'Link 1'
         type: string
+        required: true
       link2:
         description: 'Link 2'
         type: string
@@ -20,14 +21,20 @@ jobs:
     steps:
       - name: checksum
         run: |
+          if [ -z "${{ inputs.link1 }}" ]; then
+            exit
+          fi
+
           links=( \
             ${{ inputs.link1 }} \
             ${{ inputs.link2 }} \
             ${{ inputs.link3 }} \
           )
+
           for link in ${links[@]}; do
             wget -q $link
           done
+
           ls -l
           shasum -a 256 *
 
