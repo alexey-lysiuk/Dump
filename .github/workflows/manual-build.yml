@@ -1,6 +1,4 @@
 ---
-name: Manual Build
-
 on:
   workflow_dispatch:
     inputs:
@@ -29,6 +27,8 @@ on:
         description: 'Link with QuasiGlib library'
         type: boolean
 
+name: Manual Build / ${{ inputs.target }}
+
 jobs:
   build:
     name: ${{ inputs.target }}
@@ -37,19 +37,45 @@ jobs:
       # - uses: actions/checkout@v3
       - name: Checkout
         run: |
-          git clone -s https://github.com/ZDoom/zdoom-macos-deps.git
+          git clone --depth 1 https://github.com/ZDoom/zdoom-macos-deps.git
 
-      - name: Settings
-        run: |
-          echo "target = ${{ inputs.target }}"
-          echo "skip-arch = ${{ inputs.skip-arch }}"
-          echo "min-os-ver-intel = ${{ inputs.min-os-ver-intel }}"
-          echo "min-os-ver-arm = ${{ inputs.min-os-ver-arm }}"
-          echo "hack-static-moltenvk = ${{ inputs.hack-static-moltenvk }}"
-          echo "hack-quasi-glib = ${{ inputs.hack-quasi-glib }}"
+      # - name: Settings
+      #   run: |
+      #     echo "target = ${{ inputs.target }}"
+      #     echo "skip-arch = ${{ inputs.skip-arch }}"
+      #     echo "min-os-ver-intel = ${{ inputs.min-os-ver-intel }}"
+      #     echo "min-os-ver-arm = ${{ inputs.min-os-ver-arm }}"
+      #     echo "hack-static-moltenvk = ${{ inputs.hack-static-moltenvk }}"
+      #     echo "hack-quasi-glib = ${{ inputs.hack-quasi-glib }}"
 
       - name: Build target
         run: |
+          BUILD_CMDLINE="--target=${{ inputs.target }}"
+
+          if [ "${{ inputs.skip-arch }}"" == 'Intel' ]; then
+          	BUILD_CMDLINE+=' --disable-x64'
+          elif [ "${{ inputs.skip-arch }}"" == 'ARM' ]; then
+          	BUILD_CMDLINE+=' --disable-arm'
+          fi
+
+          if [ ! -z "${{ inputs.min-os-ver-intel }}" ]; then
+          	BUILD_CMDLINE+=" --os-version-x64=${{ inputs.min-os-ver-intel }}"
+          fi
+          
+          if [ ! -z "${{ inputs.min-os-ver-arm }}" ]; then
+          	BUILD_CMDLINE+=" --os-version-arm=${{ inputs.min-os-ver-arm }}"
+          fi
+          
+          if [ "${{ inputs.hack-static-moltenvk }}" == 'true' ]; then
+          	BUILD_CMDLINE+=' --static-moltenvk'
+          fi
+          
+          if [ "inputs.hack-quasi-glib" == 'true' ]; then
+          	BUILD_CMDLINE+=' --quasi-glib'
+          fi
+          
+          echo "Build command line: ${BUILD_CMDLINE}"
+        
           # ./build.py --target ${{ inputs.target }}
           ./zdoom-macos-deps/build.py --target ${{ inputs.target }}
 
