@@ -1,4 +1,6 @@
 ---
+name: Manual Build
+
 on:
   workflow_dispatch:
     inputs:
@@ -26,8 +28,6 @@ on:
       hack-quasi-glib:
         description: 'Link with QuasiGlib library'
         type: boolean
-
-name: Manual Build / ${{ inputs.target }}
 
 jobs:
   build:
