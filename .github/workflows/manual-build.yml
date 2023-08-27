@@ -41,7 +41,7 @@ jobs:
 
       - name: Build target
         run: |
-          BUILD_CMDLINE="--target=${{ inputs.target }}"
+          BUILD_CMDLINE="./build.py --target=${{ inputs.target }}"
 
           if [ "${{ inputs.skip-arch }}"" == 'Intel' ]; then
           	BUILD_CMDLINE+=' --disable-x64'
@@ -65,10 +65,11 @@ jobs:
           	BUILD_CMDLINE+=' --quasi-glib'
           fi
           
-          echo "Build command line: ${BUILD_CMDLINE}"
+          echo "Build command line:"
+          echo "> ${BUILD_CMDLINE}"
         
-          # ./build.py --target ${{ inputs.target }}
-          ./zdoom-macos-deps/build.py ${BUILD_CMDLINE}"
+          cd zdoom-macos-deps  # remove
+          ${BUILD_CMDLINE}
 
       - name: Upload Package
         uses: actions/upload-artifact@v3
