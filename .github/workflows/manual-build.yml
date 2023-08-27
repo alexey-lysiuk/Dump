@@ -43,9 +43,9 @@ jobs:
         run: |
           BUILD_CMDLINE="./build.py --target=${{ inputs.target }}"
 
-          if [ "${{ inputs.skip-arch }}"" == 'Intel' ]; then
+          if [ "${{ inputs.skip-arch }}" == 'Intel' ]; then
           	BUILD_CMDLINE+=' --disable-x64'
-          elif [ "${{ inputs.skip-arch }}"" == 'ARM' ]; then
+          elif [ "${{ inputs.skip-arch }}" == 'ARM' ]; then
           	BUILD_CMDLINE+=' --disable-arm'
           fi
 
