@@ -1,19 +1,6 @@
 name: Test
 
-on: 
-  push:
-  workflow_dispatch:
-    inputs:
-      link1:
-        description: 'Link 1'
-        type: string
-        required: true
-      link2:
-        description: 'Link 2'
-        type: string
-      link3:
-        description: 'Link 3'
-        type: string
+on: [push]
 
 jobs:
   build:
@@ -21,20 +8,7 @@ jobs:
     steps:
       - name: checksum
         run: |
-          if [ -z "${{ inputs.link1 }}" ]; then
-            exit
-          fi
-
-          links=( \
-            ${{ inputs.link1 }} \
-            ${{ inputs.link2 }} \
-            ${{ inputs.link3 }} \
-          )
-
-          for link in ${links[@]}; do
-            wget -q $link
-          done
-
+          wget -q https://www.quaddicted.com/filebase/sm82.zip https://www.quaddicted.com/filebase/sm95_pack.zip 
           ls -l
           shasum -a 256 *
 
