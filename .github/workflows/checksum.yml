@@ -26,17 +26,11 @@ jobs:
     steps:
       - name: checksum
         run: |
-          links=( \
+          wget -q \
             ${{ inputs.link1 }} \
             ${{ inputs.link2 }} \
             ${{ inputs.link3 }} \
             ${{ inputs.link4 }} \
-            ${{ inputs.link5 }} \
-          )
-
-          for link in ${links[@]}; do
-            wget -q $link
-          done
-
+            ${{ inputs.link5 }}
           ls -l
           shasum -a 256 *
