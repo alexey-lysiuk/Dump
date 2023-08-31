@@ -2,24 +2,35 @@ name: Test
 
 on: [push]
 
+#
+# Creation of 
+# https://www.doomworld.com/idgames/idstuff/quake/quake106
+#
+# curl -JOL 'https://www.quaddicted.com/files/idgames/idstuff/quake/quake106.zip'
+# tar -xf quake106.zip resource.1
+# tar -xf resource.1 ID1/PAK0.PAK
+# mv ID1 id1
+# mv id1/PAK0.PAK id1/pak0.pak
+# tar -czf quake106_pak0.tar.gz id1/pak0.pak
+#
+
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: windows-2022
     steps:
       - name: build quakespasm-exp
         run: |
-          sudo apt update && sudo apt install libflac-dev libmikmod-dev libmpg123-dev libopusfile-dev libsdl2-dev libvorbis-dev libxmp-dev
           git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
           cd quakespasm-exp
           cmake -S . -B build
-          cmake --build build --parallel 3
+          cmake --build build --config Release --parallel 3
 
       - name: unittest quakespasm-exp
         run: |
           cd quakespasm-exp/build
-          wget -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.tar.gz
-          tar -xf quake106_pak0.tar.gz
-          ./quakespasm-exp "+map e1m1; wait; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); wait; quit"
+          aria2c https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.zip
+          Expand-Archive -Path quake106_pak0.zip
+          Release/quakespasm-exp.exe "+map e1m1; wait; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); wait; quit"
 
     # runs-on: macos-12
     # steps:
