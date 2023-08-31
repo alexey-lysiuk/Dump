@@ -3,7 +3,7 @@ name: Test
 on: [push]
 
 #
-# Creation of 
+# Creation of Quake shareware .pak archives
 # https://www.doomworld.com/idgames/idstuff/quake/quake106
 #
 # curl -JOL 'https://www.quaddicted.com/files/idgames/idstuff/quake/quake106.zip'
@@ -12,25 +12,44 @@ on: [push]
 # mv ID1 id1
 # mv id1/PAK0.PAK id1/pak0.pak
 # tar -czf quake106_pak0.tar.gz id1/pak0.pak
+# zip -r quake106_pak0.zip id1/pak0.pak
 #
 
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: ubuntu-22.04
     steps:
       - name: build quakespasm-exp
         run: |
+          sudo apt update && sudo apt install libsdl2-dev
           git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
           cd quakespasm-exp
           cmake -S . -B build
-          cmake --build build --config Release --parallel 3
+          cmake --build build --parallel 3
 
       - name: unittest quakespasm-exp
         run: |
           cd quakespasm-exp/build
-          aria2c https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.zip
-          Expand-Archive -Path quake106_pak0.zip
-          Release/quakespasm-exp.exe "+map e1m1; wait; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); wait; quit"
+          wget -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.tar.gz
+          tar -xf quake106_pak0.tar.gz
+          ./quakespasm-exp -dedicated "+deathmatch 0; map e1m1; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); quit"
+
+    # runs-on: windows-2022
+    # steps:
+    #   - name: build quakespasm-exp
+    #     run: |
+    #       git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
+    #       cd quakespasm-exp
+    #       cmake -S . -B build
+    #       cmake --build build --config Release --parallel 3
+
+    #   - name: unittest quakespasm-exp
+    #     run: |
+    #       cd quakespasm-exp/build/Release
+    #       aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.zip
+    #       Expand-Archive -Path quake106_pak0.zip
+    #       # TODO copy .dlls
+    #       .\quakespasm-exp.exe "+map e1m1; wait; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); wait; quit"
 
     # runs-on: macos-12
     # steps:
