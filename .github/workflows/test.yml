@@ -6,11 +6,20 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: checksum
+      - name: build quakespasm-exp
         run: |
-          wget -q https://www.quaddicted.com/filebase/sm82.zip https://www.quaddicted.com/filebase/sm95_pack.zip 
-          ls -l
-          shasum -a 256 *
+          sudo apt update && sudo apt install libflac-dev libmikmod-dev libmpg123-dev libopusfile-dev libsdl2-dev libvorbis-dev libxmp-dev
+          git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
+          cd quakespasm-exp
+          cmake -S . -B build
+          cmake --build build --parallel 3
+
+      - name: unittest quakespasm-exp
+        run: |
+          cd quakespasm-exp/build
+          wget -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.tar.gz
+          tar -xf quake106_pak0.tar.gz
+          ./quakespasm-exp "+map e1m1; wait; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); wait; quit"
 
     # runs-on: macos-12
     # steps:
@@ -33,17 +42,20 @@ jobs:
     #       cd build
     #       make
 
-      # - name: build quakespasm .pak file
-      #   run: |
-      #     git clone --depth=1 https://github.com/sezero/quakespasm.git
-      #     cd quakespasm/Misc/qs_pak
-      #     make
 
-      # - name: upload quakespasm .pak file
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     path: quakespasm/Misc/qs_pak
-      #     name: quakespasm-pak
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: build quakespasm .pak file
+    #     run: |
+    #       git clone --depth=1 https://github.com/sezero/quakespasm.git
+    #       cd quakespasm/Misc/qs_pak
+    #       make
+
+    #   - name: upload quakespasm .pak file
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       path: quakespasm/Misc/qs_pak
+    #       name: quakespasm-pak
 
 
 #     runs-on: macos-12
