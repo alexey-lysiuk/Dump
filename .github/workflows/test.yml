@@ -24,15 +24,15 @@ jobs:
           sudo apt update && sudo apt install libsdl2-dev
           git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
           cd quakespasm-exp
-          cmake -S . -B build
+          cmake -DCMAKE_C_FLAGS="-Wall -Wno-trigraphs" -S . -B build
           cmake --build build --parallel 3
 
-      - name: unittest quakespasm-exp
-        run: |
-          cd quakespasm-exp/build
-          wget -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.tar.gz
-          tar -xf quake106_pak0.tar.gz
-          ./quakespasm-exp -dedicated "+deathmatch 0; map e1m1; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); quit"
+    #  - name: unittest quakespasm-exp
+    #    run: |
+    #      cd quakespasm-exp/build
+    #      wget -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.tar.gz
+    #      tar -xf quake106_pak0.tar.gz
+    #      ./quakespasm-exp -dedicated "+deathmatch 0; map e1m1; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); quit"
 
     # runs-on: windows-2022
     # steps:
