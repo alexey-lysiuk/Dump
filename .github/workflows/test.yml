@@ -20,13 +20,24 @@ jobs:
     runs-on: windows-2022
     steps:
       - uses: microsoft/setup-msbuild@v1
-      - name: cicdec
+
+      - name: Build cicdec
         run: |
           git clone --depth=1 https://github.com/Bioruebe/cicdec.git
           msbuild cicdec\cicdec.sln -t:restore -p:RestorePackagesConfig=true
           msbuild cicdec\cicdec.sln -p:TargetFrameworkVersion=v4.8
-          Get-ChildItem -Recurse
-          cicdec\cicdec\bin\Debug\cicdec.exe
+
+      - name: Extract RMQInstallerWinter11
+        run: |
+          aria2c -q https://icculus.org/remakequake/RMQInstallerWinter11.zip
+          Expand-Archive RMQInstallerWinter11.zip
+          cicdec\cicdec\bin\Debug\cicdec.exe RMQInstallerWinter11.exe extracted
+
+      - name: Save artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: RMQInstallerWinter11_Repackaged
+          path: extracted
 
     #   - name: unittest quakespasm-exp
     #     run: |
