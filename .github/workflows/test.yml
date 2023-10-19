@@ -17,17 +17,32 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: windows-2022
     steps:
-      - name: Download speed test
-        run: wget http://icculus.org/remakequake/RMQInstallerWinter11.zip
+      - name: cicdec
+        run: |
+          git clone --depth=1 https://github.com/Bioruebe/cicdec.git
+          msbuild cicdec\cicdec.sln
+          Get-ChildItem -Recurse
 
-      - name: Save artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: RMQInstallerWinter11_GH
-          path: .
-          if-no-files-found: ignore
+    #   - name: unittest quakespasm-exp
+    #     run: |
+    #       cd quakespasm-exp/build/Release
+    #       aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/ci_deps/quake106_pak0.zip
+    #       Expand-Archive -Path quake106_pak0.zip
+    #       # TODO copy .dlls
+    #       .\quakespasm-exp.exe "+map e1m1; wait; lua dofile('scripts/edicts.lua') secrets() monsters() teleports(); wait; quit"
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: Download speed test
+    #     run: wget http://icculus.org/remakequake/RMQInstallerWinter11.zip
+
+    #   - name: Save artifact
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: RMQInstallerWinter11_GH
+    #       path: .
+    #       if-no-files-found: ignore
 
       # - name: build quakespasm-exp
       #   run: |
