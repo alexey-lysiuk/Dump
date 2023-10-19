@@ -19,10 +19,11 @@ jobs:
   build:
     runs-on: windows-2022
     steps:
+      - uses: microsoft/setup-msbuild@v1
       - name: cicdec
         run: |
           git clone --depth=1 https://github.com/Bioruebe/cicdec.git
-          & msbuild cicdec\cicdec.sln
+          msbuild cicdec\cicdec.sln
           Get-ChildItem -Recurse
 
     #   - name: unittest quakespasm-exp
