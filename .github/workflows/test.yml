@@ -31,7 +31,8 @@ jobs:
         run: |
           aria2c -q https://icculus.org/remakequake/RMQInstallerWinter11.zip
           Expand-Archive RMQInstallerWinter11.zip
-          cicdec\cicdec\bin\Debug\cicdec.exe RMQInstallerWinter11.exe extracted
+          Get-ChildItem -Recurse
+          cicdec\cicdec\bin\Debug\cicdec.exe RMQInstallerWinter11/RMQInstallerWinter11.exe extracted
 
       - name: Save artifact
         uses: actions/upload-artifact@v3
