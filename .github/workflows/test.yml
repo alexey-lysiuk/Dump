@@ -19,13 +19,16 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: build quakespasm-exp
-        run: |
-          sudo apt update && sudo apt install libsdl2-dev
-          git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
-          cd quakespasm-exp
-          cmake -DCMAKE_C_FLAGS="-Wall -Wno-trigraphs" -S . -B build
-          cmake --build build --parallel 3
+      - name: Download speed test
+        run: wget http://icculus.org/remakequake/RMQInstallerWinter11.zip
+
+      # - name: build quakespasm-exp
+      #   run: |
+      #     sudo apt update && sudo apt install libsdl2-dev
+      #     git clone --depth=1 https://github.com/alexey-lysiuk/quakespasm-exp.git
+      #     cd quakespasm-exp
+      #     cmake -DCMAKE_C_FLAGS="-Wall -Wno-trigraphs" -S . -B build
+      #     cmake --build build --parallel 3
 
     #  - name: unittest quakespasm-exp
     #    run: |
