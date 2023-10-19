@@ -24,7 +24,7 @@ jobs:
         run: |
           git clone --depth=1 https://github.com/Bioruebe/cicdec.git
           msbuild cicdec\cicdec.sln -t:restore -p:RestorePackagesConfig=true
-          msbuild cicdec\cicdec.sln -t:TargetFrameworkVersion=v4.8
+          msbuild cicdec\cicdec.sln -p:TargetFrameworkVersion=v4.8
           Get-ChildItem -Recurse
           cicdec\cicdec\bin\Debug\cicdec.exe
 
