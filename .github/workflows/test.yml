@@ -22,7 +22,7 @@ jobs:
       - name: cicdec
         run: |
           git clone --depth=1 https://github.com/Bioruebe/cicdec.git
-          msbuild cicdec\cicdec.sln
+          & msbuild cicdec\cicdec.sln
           Get-ChildItem -Recurse
 
     #   - name: unittest quakespasm-exp
