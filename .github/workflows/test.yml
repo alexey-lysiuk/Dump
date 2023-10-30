@@ -17,28 +17,36 @@ on: [push]
 
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: ubuntu-22.04
     steps:
-      - uses: microsoft/setup-msbuild@v1
-
-      - name: Build cicdec
+      - name: test fteqcc
         run: |
-          git clone --depth=1 https://github.com/Bioruebe/cicdec.git
-          msbuild cicdec\cicdec.sln -t:restore -p:RestorePackagesConfig=true
-          msbuild cicdec\cicdec.sln -p:TargetFrameworkVersion=v4.8
+          wget https://www.fteqcc.org/dl/fteqcc_linux64.zip
+          unzip fteqcc_linux64.zip
+          ./fteqcc64
+  
+    # runs-on: windows-2022
+    # steps:
+    #   - uses: microsoft/setup-msbuild@v1
 
-      - name: Extract RMQInstallerWinter11
-        run: |
-          aria2c -q https://icculus.org/remakequake/RMQInstallerWinter11.zip
-          Expand-Archive RMQInstallerWinter11.zip
-          Get-ChildItem -Recurse
-          cicdec\cicdec\bin\Debug\cicdec.exe RMQInstallerWinter11/RMQInstallerWinter11.exe extracted
+    #   - name: Build cicdec
+    #     run: |
+    #       git clone --depth=1 https://github.com/Bioruebe/cicdec.git
+    #       msbuild cicdec\cicdec.sln -t:restore -p:RestorePackagesConfig=true
+    #       msbuild cicdec\cicdec.sln -p:TargetFrameworkVersion=v4.8
 
-      - name: Save artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: RMQInstallerWinter11_Repackaged
-          path: extracted
+    #   - name: Extract RMQInstallerWinter11
+    #     run: |
+    #       aria2c -q https://icculus.org/remakequake/RMQInstallerWinter11.zip
+    #       Expand-Archive RMQInstallerWinter11.zip
+    #       Get-ChildItem -Recurse
+    #       cicdec\cicdec\bin\Debug\cicdec.exe RMQInstallerWinter11/RMQInstallerWinter11.exe extracted
+
+    #   - name: Save artifact
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: RMQInstallerWinter11_Repackaged
+    #       path: extracted
 
     #   - name: unittest quakespasm-exp
     #     run: |
