@@ -19,8 +19,13 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: environment variables
-        run: export
+      - name: shell color test
+        run: |
+          echo " 1234567890 "
+          export
+          export TERM=xterm-color
+          export
+          echo "\n\033[1;31m 1234567890 \033[0m"
 
       # - name: test fteqcc
       #   run: |
