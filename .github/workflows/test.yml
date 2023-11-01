@@ -19,11 +19,14 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: test fteqcc
-        run: |
-          wget https://www.fteqcc.org/dl/fteqcc_linux64.zip
-          unzip fteqcc_linux64.zip
-          ./fteqcc64
+      - name: environment variables
+        run: export
+
+      # - name: test fteqcc
+      #   run: |
+      #     wget https://www.fteqcc.org/dl/fteqcc_linux64.zip
+      #     unzip fteqcc_linux64.zip
+      #     ./fteqcc64
   
     # runs-on: windows-2022
     # steps:
