@@ -21,11 +21,9 @@ jobs:
     steps:
       - name: shell color test
         run: |
-          echo " 1234567890 "
-          export
+          echo -e "\n\033\[1;31m 1234567890 \033\[0m"
           export TERM=xterm-color
-          export
-          echo "\n\033\[1;31m 1234567890 \033\[0m"
+          echo -e "\n\033\[1;31m 1234567890 \033\[0m"
 
       # - name: test fteqcc
       #   run: |
