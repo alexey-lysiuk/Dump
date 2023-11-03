@@ -17,19 +17,27 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: macos-12
     steps:
-      - name: shell color test
+      - name: Homebrew iconv install
         run: |
-          echo -e "\n\033[1;31m 1234567890 \033[0m"
-          export TERM=xterm-color
-          echo -e "\n\033[1;31m 1234567890 \033[0m"
+          brew install -v libiconv
+    
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: shell color test
+    #     run: |
+    #       echo -e "\n\033[1;31m 1234567890 \033[0m"
+    #       export TERM=xterm-color
+    #       echo -e "\n\033[1;31m 1234567890 \033[0m"
 
-      # - name: test fteqcc
-      #   run: |
-      #     wget https://www.fteqcc.org/dl/fteqcc_linux64.zip
-      #     unzip fteqcc_linux64.zip
-      #     ./fteqcc64
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: test fteqcc
+    #     run: |
+    #       wget https://www.fteqcc.org/dl/fteqcc_linux64.zip
+    #       unzip fteqcc_linux64.zip
+    #       ./fteqcc64
   
     # runs-on: windows-2022
     # steps:
