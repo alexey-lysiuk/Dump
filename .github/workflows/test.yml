@@ -22,6 +22,14 @@ jobs:
       - name: Homebrew iconv install
         run: |
           brew install -v libiconv
+
+      - name: Homebrew iconv list directory
+        run: |
+          ls -lR /usr/local/Cellar/libiconv/1.17
+
+      - name: Homebrew iconv symbols
+        run: | 
+          nm /usr/local/Cellar/libiconv/1.17/lib
     
     # runs-on: ubuntu-22.04
     # steps:
