@@ -28,8 +28,15 @@ jobs:
           ls -lR /usr/local/Cellar/libiconv/1.17
 
       - name: Homebrew iconv symbols
-        run: | 
-          nm /usr/local/Cellar/libiconv/1.17/lib
+        run: |
+          echo ::group::Dynamic
+          nm /usr/local/Cellar/libiconv/1.17/lib/libiconv.dylib
+          echo ::endgroup::
+
+          echo ::group::Static
+          nm /usr/local/Cellar/libiconv/1.17/lib/libiconv.a
+          echo ::endgroup::
+          
     
     # runs-on: ubuntu-22.04
     # steps:
