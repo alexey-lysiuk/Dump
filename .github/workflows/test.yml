@@ -17,14 +17,13 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Raze 1.8.x file listing
-        run: |
-          wget -q https://github.com/ZDoom/Raze/releases/download/1.8.0/raze_1.8.0.zip https://github.com/ZDoom/Raze/releases/download/1.8.1/raze_1.8.1.zip
-          unzip -l raze_1.8.0.zip
-          unzip -l raze_1.8.1.zip
-
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: Raze 1.8.x file listing
+    #     run: |
+    #       wget -q https://github.com/ZDoom/Raze/releases/download/1.8.0/raze_1.8.0.zip https://github.com/ZDoom/Raze/releases/download/1.8.1/raze_1.8.1.zip
+    #       unzip -l raze_1.8.0.zip
+    #       unzip -l raze_1.8.1.zip
 
     # runs-on: ubuntu-22.04
     # steps:
@@ -34,13 +33,13 @@ jobs:
     #       export TERM=xterm-color
     #       echo -e "\n\033[1;31m 1234567890 \033[0m"
 
-    # runs-on: ubuntu-22.04
-    # steps:
-    #   - name: test fteqcc
-    #     run: |
-    #       wget https://www.fteqcc.org/dl/fteqcc_linux64.zip
-    #       unzip fteqcc_linux64.zip
-    #       ./fteqcc64
+    runs-on: ubuntu-22.04
+    steps:
+      - name: test fteqcc
+        run: |
+          wget -q https://www.fteqcc.org/dl/fteqcc_linux64.zip
+          unzip fteqcc_linux64.zip
+          ./fteqcc64
   
     # runs-on: windows-2022
     # steps:
