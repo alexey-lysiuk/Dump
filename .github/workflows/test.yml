@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Download
         run: |
-          wget -q 'https://www.slipseer.com/index.php?resources/prison-of-hope.119/download'
+          aria2 'https://www.slipseer.com/index.php?resources/prison-of-hope.119/download'
 
       - name: Save artifact
         uses: actions/upload-artifact@v3
