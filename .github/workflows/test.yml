@@ -35,11 +35,16 @@ jobs:
 
     runs-on: ubuntu-22.04
     steps:
-      - name: test fteqcc
+      - name: Download
         run: |
-          wget -q https://www.fteqcc.org/dl/fteqcc_linux64.zip
-          unzip fteqcc_linux64.zip
-          ./fteqcc64
+          wget -q 'https://www.slipseer.com/index.php?resources/prison-of-hope.119/download'
+
+      - name: Save artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: prison-of-hope
+          path: .
+          if-no-files-found: ignore
   
     # runs-on: windows-2022
     # steps:
