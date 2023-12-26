@@ -35,14 +35,19 @@ jobs:
 
     runs-on: ubuntu-22.04
     steps:
+      - name: Install dependencies
+        run: |
+          pip3 install yt-dlp
+          apt install ffmpeg
+        
       - name: Download
         run: |
-          aria2c 'https://www.slipseer.com/index.php?resources/prison-of-hope.119/download'
+          yt-dlp 'https://stream.voidboost.cc/1098c4ed2154543b612ed153c7c18ba7:2023122707:ZDZXZnB6VnVBVTNPdjh2cHY5eG92WDlyRDdhaml0VGp0SWt5SWNUM1V6UmRZditYSUFlSGVDSHFjU0podXVMajFxOEZDNlcvWkxmdFNydjV6U0Jta3c9PQ==/6/4/8/3/9/1/fv3do.mp4:hls:manifest.m3u8'
 
       - name: Save artifact
         uses: actions/upload-artifact@v3
         with:
-          name: prison-of-hope
+          name: yt-dlp
           path: .
           if-no-files-found: ignore
   
