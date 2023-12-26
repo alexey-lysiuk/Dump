@@ -45,11 +45,11 @@ jobs:
           yt-dlp 'https://stream.voidboost.cc/1098c4ed2154543b612ed153c7c18ba7:2023122707:ZDZXZnB6VnVBVTNPdjh2cHY5eG92WDlyRDdhaml0VGp0SWt5SWNUM1V6UmRZditYSUFlSGVDSHFjU0podXVMajFxOEZDNlcvWkxmdFNydjV6U0Jta3c9PQ==/6/4/8/3/9/1/fv3do.mp4:hls:manifest.m3u8'
 
       - name: Save artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: yt-dlp
           path: .
-          if-no-files-found: ignore
+          compression-level: 0
   
     # runs-on: windows-2022
     # steps:
