@@ -43,7 +43,7 @@ jobs:
         
       - name: Download
         run: |
-          yt-dlp 'https://stream.voidboost.cc/1098c4ed2154543b612ed153c7c18ba7:2023122707:ZDZXZnB6VnVBVTNPdjh2cHY5eG92WDlyRDdhaml0VGp0SWt5SWNUM1V6UmRZditYSUFlSGVDSHFjU0podXVMajFxOEZDNlcvWkxmdFNydjV6U0Jta3c9PQ==/6/4/8/3/9/1/fv3do.mp4:hls:manifest.m3u8'
+          yt-dlp 'https://stream.voidboost.cc/80d9c91000f33a34ed726f474cda88f8:2023122707:ZDZXZnB6VnVBVTNPdjh2cHY5eG92WDlyRDdhaml0VGp0SWt5SWNUM1V6UmRZditYSUFlSGVDSHFjU0podXVMakIxYmcySTFqUWM4bUVjQjBUakE4YUE9PQ==/6/5/3/9/0/4/0673v.mp4:hls:manifest.m3u8'
 
       - name: Save artifact
         uses: actions/upload-artifact@v4
