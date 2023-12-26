@@ -38,6 +38,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo pip3 install yt-dlp
+          sudo apt update
           sudo apt install ffmpeg
         
       - name: Download
