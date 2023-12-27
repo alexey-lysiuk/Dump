@@ -43,14 +43,12 @@ jobs:
         
       - name: Download
         run: |
-          # 4
-          yt-dlp 'https://stream.voidboost.cc/21990988229891348177e3a645026ab4:2023122808:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM3ZKSWpLR1BOMGFxcG0xd2FOLzFyVVE9PQ==/4/2/9/0/1/1/7uu8t.mp4:hls:manifest.m3u8'
-          # 5
-          yt-dlp 'https://stream.voidboost.cc/75e8967555ca858e013563b80fa686f7:2023122808:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM24yYUJiNzNmcHZLV3B3N2hJQjhvUVE9PQ==/4/2/9/0/1/2/0k06s.mp4:hls:manifest.m3u8'
-          # 6
-          yt-dlp 'https://stream.voidboost.cc/75df13806495a1306d5c5991181726dd:2023122808:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM2prT3laTno5dU1LNFI3WWJWdXVCK2c9PQ==/4/2/9/0/1/3/1vvjh.mp4:hls:manifest.m3u8'
-          # 7
-          yt-dlp 'https://stream.voidboost.cc/e7690972167c8490322f400b3bd991a7:2023122808:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM0YyTEsxZ25aUEIyNU50SEh3S1U2OXc9PQ==/4/2/9/0/1/5/4qpph.mp4:hls:manifest.m3u8'
+          # 8
+          yt-dlp -v 'https://stream.voidboost.cc/634b27b58e1b778665961c3972a728f1:2023122813:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM2JuR2U5Si9DeFlHbUVDM2k0ZWRpeUE9PQ==/4/2/9/0/1/6/gk0ao.mp4:hls:manifest.m3u8'
+          # 9
+          yt-dlp -v 'https://stream.voidboost.cc/0eefdea490d748e9d0e95226387b3973:2023122813:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM3FYZ21LUVJ6NWtoZHlUdFR3SDEwVWc9PQ==/4/2/9/0/1/7/cg654.mp4:hls:manifest.m3u8'
+          # 10
+          yt-dlp -v 'https://stream.voidboost.cc/ddc35d3d4c43712ac1522abc0debd6e0:2023122813:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM2d4WW5Pa0NZM1B4VFpVaC83aW5aWUE9PQ==/4/2/8/9/9/5/s47bn.mp4:hls:manifest.m3u8'
 
       - name: Save artifact
         uses: actions/upload-artifact@v4
