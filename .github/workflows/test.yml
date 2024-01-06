@@ -43,17 +43,13 @@ jobs:
         
       - name: Download
         run: |
-          # 8
-          yt-dlp -v 'https://stream.voidboost.cc/634b27b58e1b778665961c3972a728f1:2023122813:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM2JuR2U5Si9DeFlHbUVDM2k0ZWRpeUE9PQ==/4/2/9/0/1/6/gk0ao.mp4:hls:manifest.m3u8'
-          # 9
-          yt-dlp -v 'https://stream.voidboost.cc/0eefdea490d748e9d0e95226387b3973:2023122813:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM3FYZ21LUVJ6NWtoZHlUdFR3SDEwVWc9PQ==/4/2/9/0/1/7/cg654.mp4:hls:manifest.m3u8'
-          # 10
-          yt-dlp -v 'https://stream.voidboost.cc/ddc35d3d4c43712ac1522abc0debd6e0:2023122813:ZDZXZnB6VnVBVTNPdjh2cHY5eG92Uklxcyt1UTNwRWRCYS9vUmpJZ0xyQ1U4VHJWNC9aZ05RclE5dmNNdUptM2d4WW5Pa0NZM1B4VFpVaC83aW5aWUE9PQ==/4/2/8/9/9/5/s47bn.mp4:hls:manifest.m3u8'
+          # yt-dlp -v 'https://???.m3u8'
+          git clone https://github.com/mikekazakov/nimble-commander.git
 
       - name: Save artifact
         uses: actions/upload-artifact@v4
         with:
-          name: yt-dlp
+          name: nc
           path: .
           compression-level: 0
   
