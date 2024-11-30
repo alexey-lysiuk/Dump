@@ -6,7 +6,7 @@ int main(int argc, char** argv)
 	if (argc < 3)
 	{
 		printf("Usage: %s bmp-in bmp-out\n", argv[0]);
-		return 1;
+		return 0;
 	}
 
 	if (SDL_Init(0) == 0)
@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 		{
 			printf("%s opened\n", argv[1]);
 
-			if (SDL_SaveBMP_RW(bmp, SDL_RWFromFile(argv[2], "wb"), 1) == 0)
+			if (SDL_SaveBMP(bmp, argv[2]) == 0)
 			{
 				printf("%s saved\n", argv[2]);
 			}
