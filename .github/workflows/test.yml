@@ -33,26 +33,40 @@ jobs:
     #       export TERM=xterm-color
     #       echo -e "\n\033[1;31m 1234567890 \033[0m"
 
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Install dependencies
-        run: |
-          sudo pip3 install yt-dlp
-          sudo apt update
-          sudo apt install ffmpeg
-        
-      - name: Download
-        run: |
-          # yt-dlp -v 'https://???.m3u8'
-          git clone https://github.com/mikekazakov/nimble-commander.git
+    # runs-on: ubuntu-22.04
+    # steps:
+    #   - name: Install dependencies
+    #     run: |
+    #       sudo pip3 install yt-dlp
+    #       sudo apt update
+    #       sudo apt install ffmpeg
 
-      - name: Save artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: nc
-          path: .
-          compression-level: 0
-  
+    #   - name: Download
+    #     run: |
+    #       # yt-dlp -v 'https://???.m3u8'
+    #       git clone https://github.com/mikekazakov/nimble-commander.git
+
+    #   - name: Save artifact
+    #     uses: actions/upload-artifact@v4
+    #     with:
+    #       name: nc
+    #       path: .
+    #       compression-level: 0
+
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install libsdl2-dev
+
+      - name: Build SDL2 Test
+        run: |
+          cd tests/sdl2
+          cmake -S . -B build
+          cmake --build build
+          ./build/bmp
+
     # runs-on: windows-2022
     # steps:
     #   - uses: microsoft/setup-msbuild@v1
@@ -132,7 +146,7 @@ jobs:
     #   - name: Vulkan-Loader #1276 macOS cross-compilation
     #     run: |
     #       curl -JOL 'https://github.com/leetal/ios-cmake/raw/547143849a0965813c40e3a8db286edf1d7667f2/ios.toolchain.cmake'
-          
+
     #       curl -JOL 'https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.261.tar.gz'
     #       tar -xf Vulkan-Headers-1.3.261.tar.gz
     #       cd Vulkan-Headers-1.3.261
@@ -140,7 +154,7 @@ jobs:
     #       cd build
     #       make install
     #       cd ../..
-          
+
     #       curl -JOL 'https://github.com/charles-lunarg/Vulkan-Loader/archive/refs/heads/support_apple_clang_compiler.zip'
     #       unzip Vulkan-Loader-support_apple_clang_compiler.zip
     #       cd Vulkan-Loader-support_apple_clang_compiler
