@@ -1,31 +1,39 @@
+#include <cstdio>
 #include <stdio.h>
 #include <SDL.h>
 
+static void Convert(const char* filename)
+{
+	if (SDL_Surface* bmp = SDL_LoadBMP(filename))
+	{
+		if (SDL_SaveBMP(bmp, filename) != 0)
+			printf("Failed to save %s\n", filename);
+
+		SDL_FreeSurface(bmp);
+	}
+	else
+		printf("Failed to load %s\n", filename);
+}
+
 int main(int argc, char** argv)
 {
-	if (argc < 3)
+	if (argc < 2)
 	{
-		printf("Usage: %s bmp-in bmp-out\n", argv[0]);
+		printf("Usage: %s bmp-file ...\n", argv[0]);
 		return 0;
 	}
 
 	if (SDL_Init(0) == 0)
 	{
-		puts("SDL initialized");
-
-		if (SDL_Surface* bmp = SDL_LoadBMP(argv[1]))
-		{
-			printf("%s opened\n", argv[1]);
-
-			if (SDL_SaveBMP(bmp, argv[2]) == 0)
-			{
-				printf("%s saved\n", argv[2]);
-			}
-
-			SDL_FreeSurface(bmp);
-		}
+		for (int i = 1; i < argc; ++i)
+			Convert(argv[i]);
 
 		SDL_Quit();
+	}
+	else
+	{
+		puts("Failed to initialize SDL");
+		return 1;
 	}
 
 	return 0;
