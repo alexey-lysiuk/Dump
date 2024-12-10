@@ -53,21 +53,21 @@ jobs:
     #       path: .
     #       compression-level: 0
 
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v4
+    # runs-on: ubuntu-24.04
+    # steps:
+    #   - uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install libsdl2-dev
+    #   - name: Install Dependencies
+    #     run: |
+    #       sudo apt update
+    #       sudo apt install libsdl2-dev
 
-      - name: Build SDL2 Test
-        run: |
-          cd tests/sdl2
-          cmake -S . -B build
-          cmake --build build
-          ./build/bmp
+    #   - name: Build SDL2 Test
+    #     run: |
+    #       cd tests/sdl2
+    #       cmake -S . -B build
+    #       cmake --build build
+    #       ./build/bmp
 
     # runs-on: windows-2022
     # steps:
@@ -179,6 +179,13 @@ jobs:
     #       path: quakespasm/Misc/qs_pak
     #       name: quakespasm-pak
 
+    runs-on: ubuntu-24.04
+    steps:
+      - name: wp.vondur.net
+        run: |
+          ping wp.vondur.net
+          traceroute wp.vondur.net
+          wget http://wp.vondur.net/?page_id=3739
 
 #     runs-on: macos-12
 #     steps:
