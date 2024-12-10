@@ -183,9 +183,9 @@ jobs:
     steps:
       - name: wp.vondur.net
         run: |
-          ping wp.vondur.net
+          # ping wp.vondur.net
           traceroute wp.vondur.net
-          wget http://wp.vondur.net/?page_id=3739
+          wget 'http://wp.vondur.net/?page_id=3739'
 
 #     runs-on: macos-12
 #     steps:
