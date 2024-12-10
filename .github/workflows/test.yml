@@ -184,6 +184,7 @@ jobs:
       - name: wp.vondur.net
         run: |
           # ping wp.vondur.net
+          sudo apt install traceroute
           traceroute wp.vondur.net
           wget 'http://wp.vondur.net/?page_id=3739'
 
