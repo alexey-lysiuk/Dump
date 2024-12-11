@@ -17,6 +17,17 @@ on: [push]
 
 jobs:
   build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: libserialport
+        run: |
+          wget https://sigrok.org/download/source/libserialport/libserialport-0.1.2.tar.gz
+          shasum -a 256 libserialport-0.1.2.tar.gz
+          tar -xf libserialport-0.1.2.tar.gz
+          cd libserialport-0.1.2
+          ./configure --disable-silent-rules --disable-dependency-tracking
+          make 
+          
     # runs-on: ubuntu-22.04
     # steps:
     #   - name: Raze 1.8.x file listing
@@ -178,15 +189,6 @@ jobs:
     #     with:
     #       path: quakespasm/Misc/qs_pak
     #       name: quakespasm-pak
-
-    runs-on: ubuntu-24.04
-    steps:
-      - name: wp.vondur.net
-        run: |
-          # ping wp.vondur.net
-          sudo apt install traceroute
-          traceroute wp.vondur.net
-          wget 'http://wp.vondur.net/?page_id=3739'
 
 #     runs-on: macos-12
 #     steps:
