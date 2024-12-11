@@ -17,16 +17,34 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: Linux Clang
+            os: ubuntu-24.04
+            extra_options: CC=clang
+
+          - name: Linux GCC
+            os: ubuntu-24.04
+
+          - name: macOS Intel
+            os: macos-13
+
+          - name: macOS ARM
+            os: macos-14
+            
     steps:
-      - name: libserialport
+      - name: build libserialport
         run: |
-          wget https://sigrok.org/download/source/libserialport/libserialport-0.1.2.tar.gz
+          aria2c https://sigrok.org/download/source/libserialport/libserialport-0.1.2.tar.gz
           shasum -a 256 libserialport-0.1.2.tar.gz
           tar -xf libserialport-0.1.2.tar.gz
           cd libserialport-0.1.2
-          ./configure --disable-silent-rules --disable-dependency-tracking
-          make 
+          ./configure --disable-shared --disable-silent-rules --disable-dependency-tracking
+          make
           
     # runs-on: ubuntu-22.04
     # steps:
