@@ -43,8 +43,9 @@ jobs:
           shasum -a 256 libserialport-0.1.2.tar.gz
           tar -xf libserialport-0.1.2.tar.gz
           cd libserialport-0.1.2
-          ./configure --disable-shared --disable-silent-rules --disable-dependency-tracking
-          make
+          ${{ matrix.config.extra_options }} ./configure --disable-shared --disable-silent-rules --disable-dependency-tracking
+          cat config.h
+          ${{ matrix.config.extra_options }} make
           
     # runs-on: ubuntu-22.04
     # steps:
