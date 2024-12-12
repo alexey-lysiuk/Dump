@@ -23,9 +23,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - name: Linux Clang
-            os: ubuntu-24.04
-            extra_options: CC=clang
+          - name: Windows
+            os: windows-2022
 
           - name: Linux GCC
             os: ubuntu-24.04
@@ -35,18 +34,22 @@ jobs:
 
           - name: macOS ARM
             os: macos-14
-            
+
     steps:
-      - name: build libserialport
+      - uses: actions/checkout@v4
+
+      - name: build serialport
+        shell: bash
         run: |
-          aria2c https://sigrok.org/download/source/libserialport/libserialport-0.1.2.tar.gz
-          shasum -a 256 libserialport-0.1.2.tar.gz
-          tar -xf libserialport-0.1.2.tar.gz
-          cd libserialport-0.1.2
-          ${{ matrix.config.extra_options }} ./configure --disable-shared --disable-silent-rules --disable-dependency-tracking
-          cat config.h
-          ${{ matrix.config.extra_options }} make
-          
+          cmake -S tests/serialport -B build
+          cmake --build build
+
+          if [[ "${{ runner.os }}" == 'Windows' ]]; then
+          	build/Debug/list_ports
+          else
+          	build/list_ports
+          fi
+
     # runs-on: ubuntu-22.04
     # steps:
     #   - name: Raze 1.8.x file listing
