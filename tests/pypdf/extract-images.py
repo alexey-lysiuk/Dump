@@ -14,7 +14,7 @@ def _extract_images(pdfpath: str):
                 f.write(image.data)
 
 def _main():
-    for path in sys.argv[:1]:
+    for path in sys.argv[1:]:
         _extract_images(path)
 
 if __name__ == '__main__':

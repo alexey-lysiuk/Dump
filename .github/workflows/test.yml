@@ -27,7 +27,7 @@ jobs:
         run: |
           cd tests/pypdf
           wget -q https://www.nooelec.com/store/downloads/dl/file/id/110/product/339/uwb_surveyor_datasheet_revision_1.pdf
-          ./extract-images.py uwb_surveyor_datasheet_revision_1.pdf
+          ./extract-images.py *.pdf
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
