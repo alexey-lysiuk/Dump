@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Dependencies
         run: |
-          sudo pip install pypdf
+          sudo pip install pypdf[image]
       - name: Extract PDF Images
         run: |
           cd tests/pypdf
