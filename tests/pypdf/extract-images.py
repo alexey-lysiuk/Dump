@@ -8,7 +8,7 @@ def _extract_images(pdfpath: str):
 
     for pageindex, page in enumerate(reader.pages):
         for imageindex, image in enumerate(page.images):
-            imagepath = f'{image.name}_{pageindex}_{imageindex}'
+            imagepath = f'{pageindex}_{imageindex}_{image.name}'
 
             with open(imagepath, "wb") as f:
                 f.write(image.data)

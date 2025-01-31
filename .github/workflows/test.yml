@@ -26,8 +26,9 @@ jobs:
       - name: Extract PDF Images
         run: |
           cd tests/pypdf
-          wget -q https://www.nooelec.com/store/downloads/dl/file/id/110/product/339/uwb_surveyor_datasheet_revision_1.pdf
+          wget -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/cw.pdf
           ./extract-images.py *.pdf
+          rm *.pdf
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
