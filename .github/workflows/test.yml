@@ -17,20 +17,23 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-      - name: HTML to PNG
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
         run: |
-          wget -q https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
-          sudo apt-get install ./wkhtmltox_0.12.6.1-2.jammy_amd64.deb
-          mkdir artifacts
-          wkhtmltoimage --enable-javascript --images https://www.zeenko.tech/litevna artifacts/litevna.png
+          sudo pip install pypdf
+      - name: Extract PDF Images
+        run: |
+          cd tests/pypdf
+          wget -q https://www.nooelec.com/store/downloads/dl/file/id/110/product/339/uwb_surveyor_datasheet_revision_1.pdf
+          ./extract-images.py uwb_surveyor_datasheet_revision_1.pdf
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
         with:
           name: artifacts
-          path: artifacts
+          path: tests/pypdf
           compression-level: 0
 
     # runs-on: ubuntu-22.04
