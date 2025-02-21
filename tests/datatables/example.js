@@ -67,6 +67,18 @@ let table = new DataTable('#example',
 		{ title: 'Range' }
   ],
   data: dataSet,
+  layout:
+  {
+      topStart: function ()
+      {
+        let toolbar = document.createElement('div');
+        toolbar.innerHTML = 'Range Search: <input type="text" id="RangeSearchInput" />';
+        return toolbar;
+      },
+      topEnd: 'search',
+      bottomStart: ['info', 'pageLength'],
+      bottomEnd: 'paging'
+  }
 });
 
 let searchvalue = NaN
@@ -85,14 +97,10 @@ function SearchRanges(string, row, rowindex)
 	return false;
 }
 
-function ApplyRangesSearch()
+$('#RangeSearchInput').on('keyup', function()
 {
-	let value = myInput.value;
+	let value = RangeSearchInput.value;
 	searchvalue = value == '' ? NaN : Number(value);
 
 	table.search(SearchRanges).draw();
-}
-
-$('#myInput').on('keyup',	ApplyRangesSearch);
-
-ApplyRangesSearch();
+});
