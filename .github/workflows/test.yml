@@ -26,6 +26,7 @@ jobs:
             wget -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/$f.tar.gz
             tar -xf $f.tar.gz
           done
+          
       - name: Build
         run: |
           export PATH=$PATH:$(pwd)/arm-2013.11/bin
@@ -36,6 +37,7 @@ jobs:
           gcc elf2img.c –o elf2img –Wall
           cd ../../firmware
           make
+          
       - name: Save artifacts
         uses: actions/upload-artifact@v4
         with:
