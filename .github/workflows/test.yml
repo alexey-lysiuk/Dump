@@ -22,12 +22,15 @@ jobs:
       - name: Download
         run: |
           wget -e robots=off --mirror http://athome.kaashoek.com/tinySA4/DFU/
+          tar -cJf artifacts.tar.xz *
+          mkdir artifacts
+          mv artifacts.tar.xz artifacts
           
       - name: Save artifacts
         uses: actions/upload-artifact@v4
         with:
           name: artifacts
-          path: .
+          path: artifacts
 
     # runs-on: ubuntu-22.04
     # steps:
