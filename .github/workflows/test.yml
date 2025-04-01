@@ -21,28 +21,17 @@ jobs:
     steps:
       - name: Install Dependencies
         run: |
-          sudo apt-get install lib32z1
-          for f in 1 2; do
-            wget -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/$f.tar.gz
-            tar -xf $f.tar.gz
-          done
+          sudo apt-get install httrack
           
-      - name: Build
+      - name: Download
         run: |
-          export PATH=$PATH:$(pwd)/arm-2013.11/bin
-          export FX3_INSTALL_PATH=$(pwd)/cyfx3sdk
-          export ARMGCC_INSTALL_PATH=$(pwd)/arm-2013.11
-          export ARMGCC_VERSION=4.8.1
-          cd $FX3_INSTALL_PATH/util/elf2img
-          gcc elf2img.c -o elf2img -Wall
-          cd ../../firmware
-          make
+          httrack http://athome.kaashoek.com/tinySA4/DFU/
           
       - name: Save artifacts
         uses: actions/upload-artifact@v4
         with:
           name: artifacts
-          path: cyfx3sdk/firmware
+          path: .
 
     # runs-on: ubuntu-22.04
     # steps:
