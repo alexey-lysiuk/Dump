@@ -19,13 +19,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - name: Install Dependencies
-        run: |
-          sudo apt-get install httrack
-          
       - name: Download
         run: |
-          httrack http://athome.kaashoek.com/tinySA4/DFU/ +*
+          wget --mirror http://athome.kaashoek.com/tinySA4/DFU/
           
       - name: Save artifacts
         uses: actions/upload-artifact@v4
