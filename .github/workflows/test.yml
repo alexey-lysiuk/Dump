@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: artifacts
-          path: cyfx3sdk/fw_build
+          path: cyfx3sdk/firmware
 
     # runs-on: ubuntu-22.04
     # steps:
