@@ -21,12 +21,10 @@ jobs:
     steps:
       - name: Test
         run: |
-          brew install libusb
           git clone https://github.com/rigexpert/libfobos.git
-          BUILD_DIR=libfobos/build
-          cmake -S libfobos -B $BUILD_DIR -DLIBUSB_INCLUDE_DIRS=/opt/homebrew/Cellar/libusb/1.0.28/include
-          cmake --build $BUILD_DIR
-          sudo cmake --install $BUILD_DIR
+          cd libfobos
+          ./build-mac.sh
+          nm fobos.dylib
       
     # runs-on: ubuntu-24.04
     # steps:
