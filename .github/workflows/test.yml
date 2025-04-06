@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: Test
         run: |
+          brew install libusb
           git clone https://github.com/rigexpert/libfobos.git
           cd libfobos
           ./build-mac.sh
