@@ -17,15 +17,19 @@ on: [push]
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: windows-2025
     steps:
-      - name: Test
+      - name: Build fobos-agile
+        shell: bash
         run: |
-          brew install libusb
-          git clone https://github.com/rigexpert/libfobos.git
-          cd libfobos
-          ./build-mac.sh
-          nm fobos.dylib
+          git clone https://github.com/alexey-lysiuk/libfobos-sdr-agile.git
+          cd libfobos-sdr-agile
+          git switch v.3.0.2-fixes
+          aria2c -q https://github.com/libusb/libusb/releases/download/v1.0.29/libusb-1.0.29.7z
+          7z x libusb-1.0.29.7z -olibusb
+          cmake -S . -B build
+          cmake --build build
+          cmake --install build
       
     # runs-on: ubuntu-24.04
     # steps:
