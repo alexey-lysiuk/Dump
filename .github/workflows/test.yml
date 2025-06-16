@@ -28,8 +28,9 @@ jobs:
           aria2c -q https://github.com/libusb/libusb/releases/download/v1.0.29/libusb-1.0.29.7z
           7z x libusb-1.0.29.7z -olibusb
           cmake -S . -B build
-          cmake --build build
+          cmake --build build --config Release
           cmake --install build
+          ls -lR 'C:/Program Files (x86)/fobos_sdr'
       
     # runs-on: ubuntu-24.04
     # steps:
