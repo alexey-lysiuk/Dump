@@ -19,10 +19,11 @@ jobs:
   build:
     runs-on: windows-2025
     steps:
-      - name: Build fobos-agile
+      - name: vcpkg install zlib
         shell: bash
         run: |
           vcpkg install zlib
+          vcpkg install zlib:x86-windows
           ls -lR $VCPKG_INSTALLATION_ROOT
           
     # runs-on: windows-2025
