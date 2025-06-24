@@ -25,7 +25,7 @@ jobs:
           vcpkg install zlib
           vcpkg install zlib:x86-windows
           # ls -lR $VCPKG_INSTALLATION_ROOT
-          cp -R $VCPKG_INSTALLATION_ROOT/installed
+          cp -R $VCPKG_INSTALLATION_ROOT/installed .
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
