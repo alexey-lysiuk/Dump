@@ -24,7 +24,7 @@ jobs:
         run: |
           aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/innounp.exe
           aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/RFEPro_WinUpgrade.exe
-          innounp.exe -drfepro RFEPro_WinUpgrade.exe
+          ./innounp.exe -drfepro RFEPro_WinUpgrade.exe
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
