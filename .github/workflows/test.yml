@@ -19,19 +19,34 @@ jobs:
   build:
     runs-on: windows-2025
     steps:
-      - name: vcpkg install zlib
+      - name: rfepro
         shell: bash
         run: |
-          vcpkg install zlib
-          vcpkg install zlib:x86-windows
-          # ls -lR $VCPKG_INSTALLATION_ROOT
-          cp -R $VCPKG_INSTALLATION_ROOT/installed .
+          aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/innounp.exe
+          aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/RFEPro_WinUpgrade.exe
+          innounp.exe -drfepro RFEPro_WinUpgrade.exe
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: vcpkg-installed
-          path: installed
+          name: rfepro
+          path: rfepro
+  
+    # runs-on: windows-2025
+    # steps:
+    #   - name: vcpkg install zlib
+    #     shell: bash
+    #     run: |
+    #       vcpkg install zlib
+    #       vcpkg install zlib:x86-windows
+    #       # ls -lR $VCPKG_INSTALLATION_ROOT
+    #       cp -R $VCPKG_INSTALLATION_ROOT/installed .
+
+    #   - name: Save artifacts
+    #     uses: actions/upload-artifact@v4
+    #     with:
+    #       name: vcpkg-installed
+    #       path: installed
           
     # runs-on: windows-2025
     # steps:
