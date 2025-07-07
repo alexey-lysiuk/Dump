@@ -2,35 +2,25 @@ name: Test
 
 on: [push]
 
-#
-# Creation of Quake shareware .pak archives
-# https://www.doomworld.com/idgames/idstuff/quake/quake106
-#
-# curl -JOL 'https://www.quaddicted.com/files/idgames/idstuff/quake/quake106.zip'
-# tar -xf quake106.zip resource.1
-# tar -xf resource.1 ID1/PAK0.PAK
-# mv ID1 id1
-# mv id1/PAK0.PAK id1/pak0.pak
-# tar -czf quake106_pak0.tar.gz id1/pak0.pak
-# zip -r quake106_pak0.zip id1/pak0.pak
-#
-
 jobs:
   build:
-    runs-on: windows-2025
+    runs-on: ubuntu-24.04
     steps:
-      - name: rfepro
-        shell: bash
+      - name: Prepare Arm GNU Toolchain
         run: |
-          aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/innounp.exe
-          aria2c -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/RFEPro_WinUpgrade.exe
-          ./innounp.exe -drfepro RFEPro_WinUpgrade.exe
-
-      - name: Save artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: rfepro
-          path: rfepro
+          # https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain
+          # https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
+          wget -q https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz
+          tar -xf arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz
+          rm arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz
+          
+      - name: Build tinySA Firmware
+        run: |
+          export PATH=$PATH:$(pwd)/arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi/bin
+          git clone --recurse-submodules https://github.com/erikkaashoek/tinySA.git
+          cd tinySA
+          make TARGET=F303
+          make
   
     # runs-on: windows-2025
     # steps:
@@ -257,3 +247,17 @@ jobs:
 #
 #     - name: test
 #       run: ./graphviz/usr/local/bin/dot --help
+
+
+#
+# Creation of Quake shareware .pak archives
+# https://www.doomworld.com/idgames/idstuff/quake/quake106
+#
+# curl -JOL 'https://www.quaddicted.com/files/idgames/idstuff/quake/quake106.zip'
+# tar -xf quake106.zip resource.1
+# tar -xf resource.1 ID1/PAK0.PAK
+# mv ID1 id1
+# mv id1/PAK0.PAK id1/pak0.pak
+# tar -czf quake106_pak0.tar.gz id1/pak0.pak
+# zip -r quake106_pak0.zip id1/pak0.pak
+#
