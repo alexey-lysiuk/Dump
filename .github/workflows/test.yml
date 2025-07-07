@@ -19,8 +19,8 @@ jobs:
           export PATH=$PATH:$(pwd)/arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi/bin
           git clone --recurse-submodules https://github.com/erikkaashoek/tinySA.git
           cd tinySA
-          make --keep-going TARGET=F303
           make --keep-going
+          make --keep-going TARGET="F303"
   
     # runs-on: windows-2025
     # steps:
