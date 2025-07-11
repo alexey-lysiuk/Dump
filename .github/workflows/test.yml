@@ -12,13 +12,7 @@ jobs:
 
       - name: print-multi-lib
         run: |
-          arm-none-eabi-gcc -print-multi-lib
-          arm-none-eabi-g++ -print-multi-lib
-
-      - name: print-multi-directory
-        run: |
-          arm-none-eabi-gcc -print-multi-directory
-          arm-none-eabi-g++ -print-multi-directory
+          strings /usr/bin/arm-none-eabi-gcc
   
     # runs-on: windows-2025
     # steps:
