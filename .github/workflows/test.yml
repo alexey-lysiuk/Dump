@@ -6,21 +6,17 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - name: Prepare Arm GNU Toolchain
+      - name: install gcc-arm-none-eabi
         run: |
-          # https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain
-          # https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
-          wget -q https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz
-          tar -xf arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz
-          rm arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi.tar.xz
-          
-      - name: Build tinySA Firmware
+          sudo apt install gcc-arm-none-eabi
+
+      - name: print-multi-lib
         run: |
-          export PATH=$PATH:$(pwd)/arm-gnu-toolchain-14.3.rel1-x86_64-arm-none-eabi/bin
-          git clone --recurse-submodules https://github.com/erikkaashoek/tinySA.git
-          cd tinySA
-          make --keep-going
-          make --keep-going TARGET="F303"
+          gcc-arm-none-eabi -print-multi-lib
+
+      - name: print-multi-directory
+        run: |
+          gcc-arm-none-eabi -print-multi-directory
   
     # runs-on: windows-2025
     # steps:
