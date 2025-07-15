@@ -25,11 +25,16 @@ jobs:
           tar -xf arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
           rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
 
-      - name: list src
-        run: |
-          ls -lR src
+      # - name: list src
+      #   run: |
+      #     ls -lR src
           
       # - name: install dependencies
+
+      - name: build arm-none-eabi
+      - run: |
+          export PATH=$PWD/src/gnu-devtools-for-arm:$PATH
+          build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --release --no-package --enable-newlib-nano
   
     # runs-on: ubuntu-24.04
     # steps:
