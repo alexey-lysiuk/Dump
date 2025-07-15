@@ -17,7 +17,7 @@ jobs:
           brew install $PKG@$PKGVER
     
       - name: download sources
-        run:
+        run: |
           mkdir src
           cd src
           git clone https://git.gitlab.arm.com/tooling/gnu-devtools-for-arm.git
@@ -26,6 +26,7 @@ jobs:
           rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
 
       - name: list src
+        run: |
           ls -lR src
           
       # - name: install dependencies
