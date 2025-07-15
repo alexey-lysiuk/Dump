@@ -3,16 +3,42 @@ name: Test
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-24.04
+  test:
+    runs-on: macos-15
     steps:
-      - name: install gcc-arm-none-eabi
+      - name: install old texinfo
         run: |
-          sudo apt install gcc-arm-none-eabi
+          export PKG=texinfo
+          export PKGVER=6.8
+          brew uninstall $PKG
+          brew tap-new $USER/local-$PKG
+          brew tap --force homebrew/core
+          brew extract --version=$PKGVER $PKG $USER/local-$PKG
+          brew install $PKG@$PKGVER
+    
+      - name: download sources
+        run:
+          mkdir src
+          cd src
+          git clone https://git.gitlab.arm.com/tooling/gnu-devtools-for-arm.git
+          curl -JOL https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/srcrel/arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
+          tar -xf arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
+          rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
 
-      - name: print-multi-lib
-        run: |
-          strings /usr/bin/arm-none-eabi-gcc
+      - name: list src
+          ls -lR src
+          
+      # - name: install dependencies
+  
+    # runs-on: ubuntu-24.04
+    # steps:
+    #   - name: install gcc-arm-none-eabi
+    #     run: |
+    #       sudo apt install gcc-arm-none-eabi
+
+    #   - name: print-multi-lib
+    #     run: |
+    #       strings /usr/bin/arm-none-eabi-gcc
   
     # runs-on: windows-2025
     # steps:
