@@ -32,7 +32,7 @@ jobs:
       # - name: install dependencies
 
       - name: build arm-none-eabi
-      - run: |
+        run: |
           export PATH=$PWD/src/gnu-devtools-for-arm:$PATH
           build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --release --no-package --enable-newlib-nano
   
