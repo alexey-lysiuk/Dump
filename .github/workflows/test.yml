@@ -10,7 +10,7 @@ jobs:
         run: |
           export PKG=texinfo
           export PKGVER=6.8
-          brew uninstall $PKG
+          # brew uninstall $PKG
           brew tap-new $USER/local-$PKG
           brew tap --force homebrew/core
           brew extract --version=$PKGVER $PKG $USER/local-$PKG
