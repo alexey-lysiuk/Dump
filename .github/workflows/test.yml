@@ -27,7 +27,7 @@ jobs:
 
       - name: install dependencies
         run: |
-          brew install coreutils
+          brew install coreutils gnu-getopt
 
       - name: build arm-none-eabi
         run: |
