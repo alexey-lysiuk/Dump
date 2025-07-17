@@ -32,7 +32,7 @@ jobs:
       - name: build arm-none-eabi
         run: |
           export PATH=$PWD/src/gnu-devtools-for-arm:$PATH
-          build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- -x --with-language=c,c++,lto --release --no-package --enable-newlib-nano --disable-gdb --disable-qemu
+          build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --with-language=c,c++,lto --release --no-package --enable-newlib-nano --disable-gdb --disable-qemu
 
       # - name: list src
       #   run: |
