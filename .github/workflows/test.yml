@@ -24,6 +24,7 @@ jobs:
           curl -JOL https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/srcrel/arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
           tar -xf arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
           rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
+          rm -r linux
 
       - name: install dependencies
         run: |
@@ -32,11 +33,14 @@ jobs:
       - name: build arm-none-eabi
         run: |
           export PATH=$PWD/src/gnu-devtools-for-arm:$PATH
-          build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --with-language=c,c++,lto --release --no-package --enable-newlib-nano --disable-gdb --disable-qemu
+          # --with-language=c,c++,lto
+          build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --release --no-package --enable-newlib-nano --disable-gdb --disable-qemu
 
-      # - name: list src
-      #   run: |
-      #     ls -lR src
+      - name: list src
+        if: always()
+        run: |
+          df -m
+          # ls -lR src
 
   
     # runs-on: ubuntu-24.04
