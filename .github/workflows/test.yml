@@ -24,7 +24,7 @@ jobs:
           curl -JOL https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/srcrel/arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
           tar -xf arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
           rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
-          rm -r linux
+          # rm -r linux
 
       - name: install dependencies
         run: |
