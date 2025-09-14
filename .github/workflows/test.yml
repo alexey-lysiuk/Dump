@@ -51,7 +51,7 @@ jobs:
           mv 10m.csv data
           sudo pip3 install pillow
           git clone https://github.com/davesmotleyprojects/rtl-sdr-misc.git
-          ./rtl-sdr-misc/heatmap/heatmap.py data/10m.csv data/10m.png
+          python3 rtl-sdr-misc/heatmap/heatmap.py data/10m.csv data/10m.png
 
       - name: upload artifacts
         uses: actions/upload-artifact@v4
