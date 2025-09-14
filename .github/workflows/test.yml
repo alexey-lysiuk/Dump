@@ -46,9 +46,9 @@ jobs:
     steps:
       - name: source data
         run: |
-          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/10m.csv
+          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/60m.csv
           mkdir data
-          mv 10m.csv data
+          mv *.csv data
 
       # - name: heatmap.py
       #   run: |
@@ -60,7 +60,7 @@ jobs:
         run: |
           wget --quiet https://github.com/dhogborg/rtl-gopow/releases/download/v0.0.5/gopow_linux64.zip
           unzip gopow_linux64.zip
-          build/gopow --input data/60m.csv --output data/60m.png --verbose
+          build/gopow --input data/*.csv --verbose
 
       - name: upload artifacts
         uses: actions/upload-artifact@v4
