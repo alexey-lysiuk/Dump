@@ -4,55 +4,61 @@ on: [push]
 
 jobs:
   test:
-    runs-on: macos-15
-    steps:
-      - name: install old texinfo
-        run: |
-          export PKG=texinfo
-          export PKGVER=6.8
-          # brew uninstall $PKG
-          brew tap-new $USER/local-$PKG
-          brew tap --force homebrew/core
-          brew extract --version=$PKGVER $PKG $USER/local-$PKG
-          brew install $PKG@$PKGVER
-    
-      - name: download sources
-        run: |
-          mkdir src
-          cd src
-          git clone https://git.gitlab.arm.com/tooling/gnu-devtools-for-arm.git
-          curl -JOL https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/srcrel/arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
-          tar -xf arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
-          rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
-          # rm -r linux
-
-      - name: install dependencies
-        run: |
-          brew install coreutils gnu-getopt
-
-      - name: build arm-none-eabi
-        run: |
-          export PATH=$PWD/src/gnu-devtools-for-arm:$PATH
-          # --with-language=c,c++,lto
-          build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --release --no-package --enable-newlib-nano --disable-gdb --disable-qemu
-
-      - name: list src
-        if: always()
-        run: |
-          df -m
-          # ls -lR src
-
-  
-    # runs-on: ubuntu-24.04
+    # runs-on: macos-15
     # steps:
-    #   - name: install gcc-arm-none-eabi
+    #   - name: install old texinfo
     #     run: |
-    #       sudo apt install gcc-arm-none-eabi
+    #       export PKG=texinfo
+    #       export PKGVER=6.8
+    #       # brew uninstall $PKG
+    #       brew tap-new $USER/local-$PKG
+    #       brew tap --force homebrew/core
+    #       brew extract --version=$PKGVER $PKG $USER/local-$PKG
+    #       brew install $PKG@$PKGVER
+    
+    #   - name: download sources
+    #     run: |
+    #       mkdir src
+    #       cd src
+    #       git clone https://git.gitlab.arm.com/tooling/gnu-devtools-for-arm.git
+    #       curl -JOL https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/srcrel/arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
+    #       tar -xf arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
+    #       rm arm-gnu-toolchain-src-snapshot-14.3.rel1.tar.xz
+    #       # rm -r linux
 
-    #   - name: print-multi-lib
+    #   - name: install dependencies
     #     run: |
-    #       strings /usr/bin/arm-none-eabi-gcc
-  
+    #       brew install coreutils gnu-getopt
+
+    #   - name: build arm-none-eabi
+    #     run: |
+    #       export PATH=$PWD/src/gnu-devtools-for-arm:$PATH
+    #       # --with-language=c,c++,lto
+    #       build-gnu-toolchain.sh --target=arm-none-eabi --rmprofile -- --release --no-package --enable-newlib-nano --disable-gdb --disable-qemu
+
+    #   - name: list src
+    #     if: always()
+    #     run: |
+    #       df -m
+    #       # ls -lR src
+
+    runs-on: ubuntu-24.04
+    steps:
+      - name: heatmap.py
+        run: |
+          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/10m.csv
+          mkdir data
+          mv 10m.csv data
+          sudo pip3 install pillow
+          git clone https://github.com/davesmotleyprojects/rtl-sdr-misc.git
+          ./rtl-sdr-misc/heatmap/heatmap.py data/10m.csv data/10m.png
+
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: data
+          path: data
+
     # runs-on: windows-2025
     # steps:
     #   - name: vcpkg install zlib
