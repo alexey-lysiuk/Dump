@@ -54,13 +54,13 @@ jobs:
       #   run: |
       #     sudo pip3 install pillow
       #     git clone https://github.com/davesmotleyprojects/rtl-sdr-misc.git
-      #     python3 rtl-sdr-misc/heatmap/heatmap.py data/10m.csv data/10m.png
+      #     python3 rtl-sdr-misc/heatmap/heatmap.py data/60m.csv data/60m.png
 
       - name: rtl-gopow
         run: |
           wget --quiet https://github.com/dhogborg/rtl-gopow/releases/download/v0.0.5/gopow_linux64.zip
           unzip gopow_linux64.zip
-          build/gopow --input data/10m.csv --output data/10m.png --verbose
+          build/gopow --input data/60m.csv --output data/60m.png --verbose
 
       - name: upload artifacts
         uses: actions/upload-artifact@v4
