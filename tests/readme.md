@@ -2,7 +2,7 @@
 
 ## Heading 2
 
-`#hashtag-test`
+`!hashtag-test`
 
 GitHub is a cloud-based platform where you can store, share, and work together with others to write code.
 
@@ -17,7 +17,7 @@ GitHub is a cloud-based platform where you can store, share, and work together w
 
 ### Heading 3
 
-`#cool-feature`
+`!cool-feature`
 
 **Git is a version control system that intelligently tracks changes in files. Git is particularly useful when you and a group of people are all making changes to the same files at the same time.**
 
@@ -28,5 +28,5 @@ GitHub is a cloud-based platform where you can store, share, and work together w
 * Let Git intelligently merge your specific changes back into the main copy of files, so that your changes don't impact other people's updates.
 * Let Git keep track of your and other people's changes, so you all stay working on the most up-to-date version of the project.
 
-`#another-hashtag`
+`!another-hashtag`
 
