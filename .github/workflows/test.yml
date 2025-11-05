@@ -6,29 +6,23 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v5
+
       - name: install svgo
         run: |
           npm install -g svgo
 
-      # - name: svgo help
-      #   run: |
-      #     svgo --help
-
-      - name: download source svg
+      - name: svgo help / plugins
         run: |
-          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/svgs.zip
-          unzip svgs.zip
+          svgo --help
+          svgo --show-plugins
 
       - name: optimize svgs
         run: |
-          mkdir optimized
-          svgo --recursive --multipass --folder . --output optimized
-          
-      - name: upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: optimized
-          path: optimized
+          svgo --recursive --multipass --folder tests/svgs
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
   
     # runs-on: macos-15
     # steps:
