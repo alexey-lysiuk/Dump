@@ -10,9 +10,25 @@ jobs:
         run: |
           npm install -g svgo
 
-      - name: svgo help
+      # - name: svgo help
+      #   run: |
+      #     svgo --help
+
+      - name: download source svg
         run: |
-          svgo --help
+          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/svgs.zip
+          unzip svgs.zip
+
+      - name: optimize svgs
+        run: |
+          mkdir optimized
+          svgo --recursive --multipass --folder . --output optimized
+          
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: optimized
+          path: optimized
   
     # runs-on: macos-15
     # steps:
