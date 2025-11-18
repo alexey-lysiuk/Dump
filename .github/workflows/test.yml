@@ -6,14 +6,14 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
-      - name: list android sdk
-        run: |
-          ls -lR "$ANDROID_HOME"
+      # - name: list android sdk
+      #   run: |
+      #     ls -lR "$ANDROID_HOME"
           
       - name: verify apk signature
         run: |
           wget --quiet https://ecoflow-service-us-cdn.ecoflow.com/apk/app-release.apk
-          "$ANDROID_NDK_HOME/bin/apksigner" verify --verbose app-release.apk
+          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose app-release.apk
   
     # runs-on: ubuntu-24.04
     # steps:
