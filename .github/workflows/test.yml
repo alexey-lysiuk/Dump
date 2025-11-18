@@ -6,23 +6,30 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5
-
       - name: install svgo
         run: |
-          npm install -g svgo
+          wget --quiet https://ecoflow-service-us-cdn.ecoflow.com/apk/app-release.apk
+          apksigner verify --verbose app-release.apk
+  
+    # runs-on: ubuntu-24.04
+    # steps:
+    #   - uses: actions/checkout@v5
 
-      - name: svgo help / plugins
-        run: |
-          svgo --help
-          svgo --show-plugins
+    #   - name: install svgo
+    #     run: |
+    #       npm install -g svgo
 
-      - name: optimize svgs
-        run: |
-          svgo --recursive --multipass --folder tests/svgs
+    #   - name: svgo help / plugins
+    #     run: |
+    #       svgo --help
+    #       svgo --show-plugins
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7
+    #   - name: optimize svgs
+    #     run: |
+    #       svgo --recursive --multipass --folder tests/svgs
+
+    #   - name: Create Pull Request
+    #     uses: peter-evans/create-pull-request@v7
   
     # runs-on: macos-15
     # steps:
