@@ -13,9 +13,12 @@ jobs:
       - name: verify apk signature
         run: |
           # wget --quiet https://ecoflow-service-us-cdn.ecoflow.com/apk/app-release.apk
-          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/com.ecoflow-5.4.5.15.apk
-          wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/com.ecoflow-6.9.0.1844.apk
-          "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose *.apk
+          # "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose app-release.apk
+          
+          for version in 5.4.5.15 6.9.0.1844; do
+            wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/com.ecoflow-${version}.apk
+            "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose com.ecoflow-${version}.apk
+          done
   
     # runs-on: ubuntu-24.04
     # steps:
