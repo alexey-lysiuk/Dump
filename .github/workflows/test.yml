@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: unpack keenetic firmware
         run: |
+          apt install attr gperf lzip protobuf-c-compiler subversion
           git clone --depth 1 https://github.com/keenetic/keenetic-sdk.git
           cd keenetic-sdk
           wget --quiet https://osvault.keenetic.net/KN-1812/4.03/KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
