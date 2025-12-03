@@ -6,19 +6,30 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     steps:
-      # - name: list android sdk
-      #   run: |
-      #     ls -lR "$ANDROID_HOME"
-          
-      - name: verify apk signature
+      - name: unpack keenetic firmware
         run: |
-          # wget --quiet https://ecoflow-service-us-cdn.ecoflow.com/apk/app-release.apk
-          # "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose app-release.apk
+          git clone --depth 1 https://github.com/keenetic/keenetic-sdk.git
+          cd keenetic-sdk
+          wget --quiet https://osvault.keenetic.net/KN-1812/4.03/KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
+          ./unpack.sh KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
+          git status
+          ls -lR
+  
+    # runs-on: ubuntu-24.04
+    # steps:
+    #   # - name: list android sdk
+    #   #   run: |
+    #   #     ls -lR "$ANDROID_HOME"
           
-          for version in 5.4.5.15 6.9.0.1844; do
-            wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/com.ecoflow-${version}.apk
-            "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose com.ecoflow-${version}.apk
-          done
+    #   - name: verify apk signature
+    #     run: |
+    #       # wget --quiet https://ecoflow-service-us-cdn.ecoflow.com/apk/app-release.apk
+    #       # "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose app-release.apk
+          
+    #       for version in 5.4.5.15 6.9.0.1844; do
+    #         wget --quiet https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/com.ecoflow-${version}.apk
+    #         "$ANDROID_HOME/build-tools/36.1.0/apksigner" verify --verbose com.ecoflow-${version}.apk
+    #       done
   
     # runs-on: ubuntu-24.04
     # steps:
