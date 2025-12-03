@@ -14,7 +14,7 @@ jobs:
           # sudo apt install squashfs-tools
           wget --quiet https://osvault.keenetic.net/KN-1812/4.03/KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
           # ./unpack.sh KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
-          unsquashfs -offset 2097152 -regex '^([^d].*$)|(d([^e].*$|$))|(de([^v].*$|$))|(dev.+$)' KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
+          unsquashfs -offset 2097152 -regex KN-1812_stable_4.3.6_4.03.C.6.0-5.bin '^([^d].*$)|(d([^e].*$|$))|(de([^v].*$|$))|(dev.+$)'
           # git status
           ls -lR
           
