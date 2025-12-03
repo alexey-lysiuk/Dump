@@ -8,12 +8,14 @@ jobs:
     steps:
       - name: unpack keenetic firmware
         run: |
-          sudo apt install attr gperf lzip protobuf-c-compiler subversion
-          git clone --depth 1 https://github.com/keenetic/keenetic-sdk.git
-          cd keenetic-sdk
+          # sudo apt install attr gperf lzip protobuf-c-compiler subversion
+          # git clone --depth 1 https://github.com/keenetic/keenetic-sdk.git
+          # cd keenetic-sdk
+          sudo apt install squashfs-tools
           wget --quiet https://osvault.keenetic.net/KN-1812/4.03/KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
-          ./unpack.sh KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
-          git status
+          # ./unpack.sh KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
+          unsquashfs -force -offset 2097152 KN-1812_stable_4.3.6_4.03.C.6.0-5.bin
+          # git status
           ls -lR
   
     # runs-on: ubuntu-24.04
