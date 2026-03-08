@@ -4,10 +4,26 @@ on: [push]
 
 jobs:
   test:
-    runs-on: macos-15
+    runs-on: ubuntu-24.04
     steps:
-      - name: python machine
-        run: python3 -c 'import platform; print(platform.machine())'
+      - name: install porkchop
+        run: |
+          sudo cargo install porkchop
+
+      - name: get firmware files
+        run: |
+          wget -q https://github.com/alexey-lysiuk/Dump/releases/download/TestTag/FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11.zip
+          unzip FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11.zip
+
+      - name: decrypt firmware
+        run: |
+          porkchop 'FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11/FT5D_MAIN_ver121(EXP)/FT5D_MAIN_ver121(EXP).exe' main.bin
+          porkchop 'FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11/FT5D_SUB_ver110(ENG)/FT5D_SUB_ver110(ENG).exe' sub.bin
+        
+    # runs-on: macos-15
+    # steps:
+    #   - name: python machine
+    #     run: python3 -c 'import platform; print(platform.machine())'
     
     # runs-on: ubuntu-24.04
     # steps:
