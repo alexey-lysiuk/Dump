@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: install porkchop
         run: |
-          sudo cargo install porkchop
+          cargo install porkchop
 
       - name: get firmware files
         run: |
