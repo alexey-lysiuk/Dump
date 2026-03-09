@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: install porkchop
         run: |
-          sudo cargo install porkchop
+          cargo install porkchop
 
       - name: get firmware files
         run: |
@@ -17,8 +17,15 @@ jobs:
 
       - name: decrypt firmware
         run: |
-          porkchop 'FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11/FT5D_MAIN_ver121(EXP)/FT5D_MAIN_ver121(EXP).exe' main.bin
-          porkchop 'FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11/FT5D_SUB_ver110(ENG)/FT5D_SUB_ver110(ENG).exe' sub.bin
+          mkdir decrypted
+          porkchop 'FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11/FT5D_MAIN_ver121(EXP)/FT5D_MAIN_ver121(EXP).exe' decrypted/main.bin
+          # porkchop 'FT5D_EXP_MAIN_Ver1.21_SUB_Ver1.10_Firmware_Update_2025_11/FT5D_SUB_ver110(ENG)/FT5D_SUB_ver110(ENG).exe' decrypted/sub.bin
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: decrypted
+          path: |
+            decrypted
         
     # runs-on: macos-15
     # steps:
