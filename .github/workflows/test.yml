@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Download
         run: |
-          wget -e robots=off --mirror http://dfu.tinydevices.org/tinyPFA/DFU/
+          wget -e robots=off --mirror http://athome.kaashoek.com/tinyGTC/DFU/
           tar -cJf firmware.tar.xz *
           mkdir firmware
           mv firmware.tar.xz firmware
